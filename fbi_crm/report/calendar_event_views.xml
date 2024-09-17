@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="calendar_event_pivot_forecast" model="ir.ui.view">
+		<field name="name">crm.fbi.calendar.report.view.pivot.forecast</field>
+		<field name="model">crm.fbi.calendar.report</field>
+		<field name="priority">32</field>
+		<field name="arch" type="xml">
+			<pivot string="Events Analysis" sample="1" js_class="forecast_pivot">
+				<field name="user_id" type="col" />
+				<field name="meeting_date" interval="month"/>
+				<field name="create_date" interval="month"/>
+				<field name="telemarketer_id" />
+				<field name="commercial_annonce_id" />
+				<field name="partner_name" />
+				<field name="company_siret" />
+				<field name="city" />
+				<field name="contact_name" />
+				<field name="function" />
+				<field name="meeting_hour" />
+			</pivot>
+		</field>
+	</record>
+
+	<record id="calendar_event_report_view_tree" model="ir.ui.view">
+		<field name="name">crm.fbi.calendar.report.tree</field>
+		<field name="model">crm.fbi.calendar.report</field>
+		<field name="arch" type="xml">
+			<tree default_order="create_date desc">
+				<field name="day_date" />
+				<field name="create_date" />
+				<field name="telemarketer_id" />
+				<field name="commercial_annonce_id" />
+				<field name="user_id" />
+				<field name="partner_name" />
+				<field name="company_siret" />
+				<field name="city" />
+				<field name="contact_name" />
+				<field name="function" />
+				<field name="meeting_date" />
+				<field name="meeting_hour" />
+				<field name="company_id" groups="base.group_multi_company"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="calendar_event_report_view_search" model="ir.ui.view">
+		<field name="name">crm.fbi.calendar.report.search</field>
+		<field name="model">crm.fbi.calendar.report</field>
+		<field name="arch" type="xml">
+			<search string="Events Analysis">
+				<field name="telemarketer_id" string="TéléPro" />
+				<field name="user_id" string="Nom du Commercial" />
+				<field name="city" />
+				<filter name="Date de prise de RDV" date="create_date" />
+				<filter name="Date de RDV" date="meeting_date" />
+				<separator />
+				<group expand="1" string="Group By">
+					<filter string="TéléPro" name="group_by_telemarketer_id"
+						context="{'group_by': 'telemarketer_id'}" />
+					<filter string="Date de RDV" name="group_by_meeting_date"
+						context="{'group_by': 'meeting_date:month'}" />
+					<filter string="Date de prise de RDV"
+						name="group_by_create_date"
+						context="{'group_by': 'create_date:month'}" />
+					<separator />
+					<filter string="Commercial" name="group_by_user_id"
+						context="{'group_by': 'user_id'}" />
+					<filter string="Company" name="company"
+						context="{'group_by': 'company_id'}"
+						groups="base.group_multi_company" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record id="calendar_event_report_action" model="ir.actions.act_window">
+		<field name="name">RDV YNOV'IT</field>
+		<field name="res_model">crm.fbi.calendar.report</field>
+		<field name="view_mode">tree,pivot</field>
+	</record>
+
+	<menuitem id="menu_calendar_event_report_action"
+		name="RDV YNOV'IT" parent="crm.crm_menu_report"
+		action="calendar_event_report_action" sequence="40" />
+</odoo>

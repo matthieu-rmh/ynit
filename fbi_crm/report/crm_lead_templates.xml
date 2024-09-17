@@ -1,0 +1,342 @@
+<odoo>
+    <template id="report_template_fiche_rdv">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-if="o.calendar_event_count == 1">
+                    <t t-set="event" t-value="o.calendar_event_ids[0]"/>
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .local-title {
+                            background-color: #9C9C9C;
+                            color: white;
+                            font-weight: bold;
+                            text-align: center;
+                            }
+
+                            .local-important-title {
+                            background-color: #0000FF;
+                            color: white;
+                            font-weight: bold;
+                            text-align: center;
+                            }
+
+                            .local-required-cell {
+                            background-color: #E0E0E0;
+                            }
+
+                            .local-important-cell {
+                            background-color: #0000FF;
+                            color: white;
+                            }
+
+                            [class$="-cell"], [class$="-title"] {
+                            padding: 0 0 0 5px;
+                            border: 1px solid black;
+                            font: 9pt Arial;
+                            }
+
+                            .local-group {
+                            margin-bottom: 15px;
+                            }
+                        </style>
+                        <div class="page">
+                            <div class="local-group">
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-title">
+                                        <span>Commercial</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Concession</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span>FBI Loire</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>RDV pris par</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.commercial_annonce_id"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Nom du commercial communiqué au prospect</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.commercial_annonce_id"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Nom du commercial dans la base</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.user_id"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="local-group">
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-title">
+                                        <span>Calendrier</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-important-cell">
+                                        <span>Date RDV</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="event.start" t-options='{"format": "dd/MM/yyyy"}'/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-important-cell">
+                                        <span>Heure</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="event.start" t-options='{"format": "HH:mm"}'/>
+                                    </div>
+                                </div>
+                                <!--div class="row">
+                                    <div class="col-5 offset-1 local-important-cell">
+                                        <span>RDV Visio ?</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <t t-if="o.rdv_visio">
+                                            <span>Oui</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span>Non</span>
+                                        </t>
+                                    </div>
+                                </div-->
+                            </div>
+
+                            <div class="local-group">
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-title">
+                                        <span>Coordonnées</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Raison Sociale</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.partner_name"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Siret</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.company_siret"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Adresse</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.street"/>
+                                        <span t-field="o.street2"/>
+                                        <br/>
+                                        <span t-field="o.zip"/>
+                                        <span t-field="o.city"/>
+                                        <span t-field="o.state_id"/>
+                                        <span t-field="o.country_id"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Téléphone</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.phone"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Nombre de Sites</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.company_nb_sites"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Priorité</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.lead_priority"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Dernier CA connu</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-esc="o.format_amount(o.company_dernier_ca)"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Année CA connu</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.company_annee_ca"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Tranche Effectif</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.company_tranche_effectif"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="local-group">
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Contact</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                    	<span t-field="o.title"/>
+                                    	<span t-field="o.contact_firstname"/>
+                                        <span t-field="o.contact_name"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Fonction</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.function"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Téléphone</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.mobile"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-required-cell">
+                                        <span>Email</span>
+                                    </div>
+                                    <div class="col-5 local-required-cell">
+                                        <span t-field="o.contact_lead_email"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="local-group">
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-important-title">
+                                        <span>Documents reçus par mois</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Nombre de factures fournisseur</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.potential_doc_entrants_nbr_facture_fournisseur"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Nombre de Bon de Livraison</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.potential_doc_entrants_nbr_bon_de_livraison"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Nombre de Bon de Commande</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.potential_doc_entrants_nbr_bon_de_commande"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Saisie en interne</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <t t-if="o.potential_saisie_en_interne">
+                                            <span>Oui</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span>Non</span>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Logiciel de Comptabilité</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.potential_logiciel_comptable"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-important-title">
+                                        <span>Documents envoyés par mois</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Nombre de documents envoyés</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <span t-field="o.potential_doc_sortants_descriptif"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 offset-1 local-cell">
+                                        <span>Utilisation de Chorus</span>
+                                    </div>
+                                    <div class="col-5 local-cell">
+                                        <t t-if="o.potential_chorus">
+                                            <span>Oui</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span>Non</span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="local-group">
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-important-title">
+                                        <span>COMMENTAIRES</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10 offset-1 local-cell">
+                                        <span t-field="o.commentaire_choice"/>
+                                        <br/>
+                                        <span t-field="o.commentaire_lines"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

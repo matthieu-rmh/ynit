@@ -1,0 +1,77 @@
+body {
+  	font-family: 'Mulish', sans-serif;
+  	font-size: 12px;
+}
+
+.border-top,
+.o_brand_promotion {
+	display: none;
+}
+
+.btn-fill-primary, .btn-primary {
+    background-color: #86E1A6;
+    border-color: #86E1A6;
+}
+
+.btn-fill-primary:hover, .btn-primary:hover {
+    background-color: #0D1C31;
+    border-color: #0D1C31;
+}
+
+.o_home_menu_background, .o_web_client.o_home_menu_background {
+	background-color: #1E3252;
+	background-image: url(/ynov_it_brandboard/static/src/img/bg.png);
+}
+
+a {
+    color: #86E1A6;
+}
+
+a:hover {
+    color: #1E3252;
+}
+
+.ynov-it-footer {
+	margin-top: 50px;
+}
+
+.o_home_menu_background .container {
+	position: relative;
+  	top: 50%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
+
+.oe_login_buttons .btn.btn-link.btn-sm,
+.oe_login_buttons .justify-content-between a:first-child {
+	display: none;
+}
+
+.oe_login_buttons .justify-content-between {
+	display: block !important;
+	text-align: right;
+}
+
+.navbar-light .btn-primary {
+	background-color: #86E1A6;
+	border-color: #86E1A6;
+}
+
+.o_footer a:not(.btn) {
+	color: #86E1A6;
+}
+
+.o_footer {
+	background-color: #1E3252 !important;
+	color: #FFF;
+}
+.o_footer .o_footer_copyright {
+	background-color: #0D1C31 !important;
+}
+.o_footer .text-muted {
+	color: rgba(255, 255, 255, 0.7) !important;
+}
+#toolbar {
+    --we-cp-o-color-1: orange;  
+}

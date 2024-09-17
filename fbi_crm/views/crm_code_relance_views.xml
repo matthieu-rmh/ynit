@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <!-- Liste des codes de relance -->
+        <record model="ir.ui.view" id="crm_code_relance_view_tree">
+            <field name="name">fbi_crm.crm.code.relance.view.tree</field>
+            <field name="model">crm.code_relance</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="code" string="Code"/>
+                    <field name="label" string="Nom court"/>
+                    <field name="name" string="Nom complet"/>
+                    <field name="state" string="État du lead"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Recherche (Group by Etat) des codes de relance -->
+        <record model="ir.ui.view" id="crm_code_relance_search">
+            <field name="name">fbi_crm.crm.code.relance.search</field>
+            <field name="model">crm.code_relance</field>
+            <field name="arch" type="xml">
+                <search string="State">
+                    <field name="label" string="Nom court"/>
+                    <field name="name" string="Nom complet"/>
+                    <field name="state" string="État du lead"/>
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter string="Par état" name="state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="code_relance_action" model="ir.actions.act_window">
+            <field name="name">Codes de relance</field>
+            <field name="res_model">crm.code_relance</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem
+                id="code_relance_menuitem"
+                name="Codes de relance"
+                action="code_relance_action"
+                parent="crm.crm_menu_config"
+                groups="fbi_crm.group_fbi_crm_dm"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+    
+	    <record id="fbi_crm_team_dematicall" model="crm.team" forcecreate="False">
+	        <field name="name">DEMATICALL</field>
+	        <!-- <field name="user_id">15</field> -->
+	        <field name="company_id">1</field>
+	        <field name="use_opportunities" eval="True"/>
+	        <field name="use_leads" eval="True"/>
+	    </record>
+	    
+	    <record id="fbi_crm_team_telpro_ynov_it" model="crm.team" forcecreate="False">
+	        <field name="name">Télépro YNOV'IT</field>
+	        <!-- <field name="user_id">15</field> -->
+	        <field name="company_id">1</field>
+	        <field name="use_opportunities" eval="True"/>
+	        <field name="use_leads" eval="True"/>
+	    </record>
+	    
+	    <record id="fbi_crm_team_telvente_ynov_it" model="crm.team" forcecreate="False">
+	        <field name="name">Télévente YNOV'IT</field>
+	        <!-- <field name="user_id">15</field> -->
+	        <field name="company_id">1</field>
+	        <field name="use_opportunities" eval="True"/>
+	        <field name="use_leads" eval="True"/>
+	    </record>
+    
+	</data>
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+	<record id="sh_office365_calendar_queue_action"
+		model="ir.actions.act_window">
+		<field name="name">Calendar Queue</field>
+		<field name="res_model">sh.office.queue</field>
+		<field name="context">{'search_default_calendar_queue': 1}</field>
+		<field name="domain">[('sh_current_state', '=', 'draft')]</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id"
+			ref="sh_office365_connector.sh_office365_calendar_tree" />
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Calendar Queue
+			</p>
+		</field>
+	</record>
+
+	<menuitem name="Calendar Queue" id="sh_office365_calendar_queue"
+		action="sh_office365_calendar_queue_action"
+		parent="sh_office365_connector.sh_office365_queue" sequence="2" />
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sh_office_contact_selection_form" model="ir.ui.view">
+		<field name="name">sh.office.contact.selection.form</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_res_partner_filter" />
+		<field name="arch" type="xml">
+			<xpath expr="//search/filter[@name='inactive']" position="before">
+				<separator />
+				<filter string="Imported/Exported Office365"
+					name="exported_true"
+					domain="[('office365_id', '!=', False)]" />
+				<filter string="Not Imported/Exported Office365"
+					name="exported_false"
+					domain="[('office365_id', '=', False)]" />
+				<separator />
+			</xpath>
+		</field>
+	</record>
+</odoo>

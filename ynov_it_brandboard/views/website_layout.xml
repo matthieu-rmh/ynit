@@ -1,0 +1,58 @@
+<odoo>
+	<data>
+		<template id="option_header_brand_logo_inherit" inherit_id="website.option_header_brand_logo">
+			<xpath expr="//a/span" position="replace">
+				<span t-field="res_company.logo" t-options="{'widget': 'image', 'width': 95, 'height': 40}" role="img" t-att-aria-label="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+			</xpath>
+		</template>
+
+		<template id="footer_custom_inherit" inherit_id="website.footer_custom">
+			<!--xpath expr="//a[@href='/website/social/facebook']" position="replace">
+			</xpath>
+			<xpath expr="//a[@href='/website/social/twitter']" position="replace">
+			</xpath>
+			<xpath expr="//a[@href='/website/social/linkedin']" position="attributes">
+				<attribute name="href">https://www.linkedin.com/company/ynov-it-groupe/</attribute>
+			</xpath-->
+			<xpath expr="//div[@id='connect']/ul/li[2]" position="replace">
+				<li><i class="fa fa-envelope fa-fw me-2"/><span><a href="mailto:contact@ynit.fr">contact@ynit.fr</a></span></li>
+			</xpath>
+			<xpath expr="//div[@id='connect']/ul/li[3]" position="replace">
+				<li><i class="fa fa-phone fa-fw me-2"/><span class="o_force_ltr"><a href="tel:+33810209609">+33 (0) 810 209 609</a></span></li>
+			</xpath>
+			<xpath expr="//div[hasclass('row')]/div[2]" position="replace">
+				<div class="col-lg-5 pt24 pb24">
+					<h5 class="mb-3">À propos de nous</h5>
+					<p>Le groupe Ynov'iT, spécialiste en technologies de l'information, en gestion de flux documentaires et en solutions d'impression, accompagne les entreprises dans leur transformation digitale. Grâce à nos 80 collaborateurs expérimentés, nous offrons des services sur mesure, une expertise reconnue et un engagement fort envers la satisfaction client.</p>
+				</div>
+			</xpath>
+		</template>
+
+		<template id="contactus_inherit" inherit_id="website.contactus">
+			<xpath expr="//section[2]/div/div/div/p" position="replace">
+				<p t-translation="fr_FR">
+					Pour toute demande d'information ou question concernant notre groupe ou nos services, n'hésitez pas à nous contacter.<br/>
+					Nous nous engageons à vous répondre dans les plus brefs délais !
+				</p>
+			</xpath>
+			<xpath expr="//section[2]/div/div/div[2]/ul" position="replace">
+				<ul class="list-unstyled mb-0 ps-2">
+                    <li>Ynov'iT Groupe</li>
+                    <li><i class="fa fa-map-marker fa-fw me-2"/><span class="o_force_ltr">SAINT-ETIENNE - 18 Rue de l’Innovation</span></li>
+                    <li><i class="fa fa-map-marker fa-fw me-2"/><span class="o_force_ltr">BRON – 9, Rue Colonel Chambonnet</span></li>
+                    <li><i class="fa fa-map-marker fa-fw me-2"/><span class="o_force_ltr">VALENCE – 435, Avenue Victor Hugo</span></li>
+                    <li><i class="fa fa-map-marker fa-fw me-2"/><span class="o_force_ltr">MONTELIMAR – 3, Rue Emile Monier</span></li>
+                    <li><i class="fa fa-map-marker fa-fw me-2"/><span class="o_force_ltr">AIX-EN-PROVENCE – 220, Rue Denis Papin</span></li>
+                    <li><i class="fa fa-phone fa-fw me-2"/><span class="o_force_ltr">+33 (0) 810 209 609</span></li>
+                    <li><i class="fa fa-1x fa-fw fa-envelope me-2"/><span>contact@ynit.fr</span></li>
+                </ul>
+			</xpath>
+		</template>
+
+		<template id="footer_copyright_company_name_inherit" inherit_id="portal.frontend_layout">
+			 <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
+				<span class="o_footer_copyright_name me-2">Copyright &amp;copy; Ynov'iT Groupe</span>
+			</xpath>
+		</template>
+	</data>
+</odoo>

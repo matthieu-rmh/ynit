@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_lead_choice_telemarketer" model="ir.ui.view">
+    	<field name="name">crm.lead.choise.telemarketer.mass.form</field>
+        <field name="model">crm.lead.choise.telemarketer</field>
+        <field name="arch" type="xml">
+            <form string="Télévendeur / Manager">
+            	<separator string="VEUILLEZ CHOISIR UN TÉLÉVENDEUR OU UN COMMERCIAL POUR LE RAPPEL DU PROSPECT."/>
+                <group>
+                	<group>
+                    	<field name="telemarketer_id" required="1" widget="selection"/>
+                    </group>
+                </group>
+                <field name="rdv_pour_confirmation" nolabel="1" colspan="4" placeholder="Raison de la validation/annulation RDV"/>
+                <footer>
+                    <button string="Confirmer" name="wizard_action_direction_pass_to_ctrl_qualite" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+</odoo>

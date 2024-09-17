@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        
+        <record model="ir.ui.view" id="fbi_crm_lead_emails_to_view_tree">
+            <field name="name">fbi_crm.fbi.crm.lead.emails.to.view.tree</field>
+            <field name="model">fbi.crm.lead.emails.to</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" string="Nom"/>
+                    <field name="remove_to" string="Destinataires à enlever"/>
+                    <field name="add_to" string="Destinataires à ajouter"/>
+                    <field name="user_ids" string="Utilisateurs concernés" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="fbi_crm_lead_emails_to_action" model="ir.actions.act_window">
+            <field name="name">Destinataires Emails</field>
+            <field name="res_model">fbi.crm.lead.emails.to</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem
+                id="fbi_crm_lead_emails_to_menuitem"
+                name="Destinataires Emails"
+                action="fbi_crm_lead_emails_to_action"
+                parent="crm.crm_menu_config"
+                groups="fbi_crm.group_fbi_crm_dm"
+        />
+    </data>
+</odoo>

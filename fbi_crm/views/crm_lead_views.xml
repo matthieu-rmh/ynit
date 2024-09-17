@@ -1,0 +1,712 @@
+<odoo>
+    <data>
+        <!-- Ajout du code de relance sur les opportunités du CRM -->
+        <record model="ir.ui.view" id="crm_lead_view_form">
+            <field name="name">fbi_crm.crm.lead.view.form.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+            
+            	<!-- Disable Clickable Status bar -->
+            	<xpath expr="//header/field[@name='stage_id']" position="replace">
+            		<field name="stage_id" widget="statusbar" class="o_field_statusbar"
+                            options="{'clickable': False, 'fold_field': 'fold'}"
+                            domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]"
+                            attrs="{'invisible': ['|', ('active', '=', False), ('type', '=', 'lead')]}"/>
+            	</xpath>
+            	
+            	<!-- ADD BUTTON ACTION CONTROLEUR QUALITE -->
+            	<xpath expr="//header" position="inside">
+
+            		<field name="stage_id_name" invisible="1"/>
+            		
+            		<!-- OUI CONTROLE QUALITE -->
+            		<button name="action_to_validation_direction" string="A Valider Direction" class="oe_highlight ctrl_quality" 
+                            type="object" title="Passage de la fiche 'A valider Direction'"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_controle_qualite'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_controle_qualite"/>
+            		
+            		<!-- NON CONTROLE QUALITE -->
+            		<!-- Cacher le bouton 01/03/2024 -->
+            		<!-- <button name="action_to_cancel_direction" string="Annuler Direction" class="oe_highlight ctrl_quality" 
+                            type="object" title="Passage de la fiche 'A Annuler Direction'"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_controle_qualite'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_controle_qualite"/> -->
+                            
+                    <!-- DOUTE CONTROLE QUALITE -->
+                    <!-- Cacher le bouton 01/03/2024 -->
+            		<!-- <button name="action_direction_pass_to_ctrl_qualite" string="DOUTE - Validation" class="oe_highlight ctrl_quality" 
+                            type="object" title="Renseignement sur la fiche J+72h, de la raison de ce besoin de confirmation et de la personne"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_controle_qualite'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_controle_qualite"/> -->
+                            
+                    <!-- <button name="action_confirm_cancel_direction" string="Annulation direction" class="oe_highlight ctrl_direction" 
+                            type="object" title="Confirmation Annulation direction"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_a_annuler_direction'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/> -->
+                            
+                    <button name="action_manager_cancel_done" string="Annulation Manager" class="oe_highlight ctrl_manager" 
+                            type="object" title="Appel du client pour annuler le RDV - Passage de la fiche à 'Annulation manager faite'"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_a_annuler_direction'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_manager"/>
+                            
+                    <!-- DOUTE DIRECTION -->
+                    <!-- <button name="action_direction_pass_to_ctrl_qualite" string="DOUTE Confirmation" class="oe_highlight ctrl_direction" 
+                            type="object" title="Renseignement sur la fiche J+72h, de la raison de ce besoin de confirmation et de la personne"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_a_annuler_direction'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/>
+                     -->
+                    <!-- A VALIDER DIRECTION -->
+                    <!-- <button name="action_to_validation_direction" string="A Valider Direction" class="oe_highlight ctrl_quality" 
+                            type="object" title="Ecoute du nouvel échange - Ajout d'une note sur la fiche"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_rdv_attente_conf_72h'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_controle_qualite"/> -->
+                            
+                    <!-- <button name="action_telpro_manager_ctrl_qualite" string="Contrôle Qualité" class="ctrl_telpro" 
+                            type="object" title="Ecoute du nouvel échange - Ajout d'une note sur la fiche"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_rdv_attente_conf_72h'), ('type', '=', 'lead')]}"/> -->
+                    
+                    <!-- VALIDATION DIRECTION -->
+                    <button name="action_direction_validate" string="Valider" class="oe_highlight ctrl_direction" 
+                            type="object" title="Passage de la fiche 'RDV A envoyer'"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_validation_dm'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/>
+                    
+                    <button name="action_to_cancel_direction" string="RDV Non Validé" class="oe_highlight ctrl_direction" 
+                            type="object" title="Confirmation Annulation direction"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_validation_dm'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/>
+                            
+                    <button name="action_direction_pass_to_ctrl_qualite" string="DOUTE Validation" class="oe_highlight ctrl_direction" 
+                            type="object" title="Renseignement sur la fiche J+72h, de la raison de ce besoin de confirmation et de la personne"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_validation_dm'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/>
+                            
+                    <!-- VALIDATION DIRECTION - RDV A ENVOYER -->
+                    <button name="action_direction_confirm_rdv" string="Envoi RDV VISIO" class="oe_highlight ctrl_direction" 
+                            type="object" title="Envoyer RDV"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_rdv_a_envoyer'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/>
+                   	
+                   	<button name="action_direction_confirm_rdv" string="Envoi RDV PHYSIQUE" context="{'rdv_physique': '200'}" class="oe_highlight ctrl_direction" 
+                            type="object" title="Envoyer RDV"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_rdv_a_envoyer'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_dm"/>
+                            
+                    <!-- RDV CLEINT POUR SUPPRESSION -->
+                    <button name="action_direction_delete_rdv_client" string="RDV Annulé - Suppression" class="oe_highlight ctrl_manager" 
+                            type="object" title="Suppression du RDV de la fiche et passage dans 'Annulé Client'"
+                            attrs="{'invisible': ['|', ('stage_id_name', '!=', 'stage_envoi_et_archive'), ('type', '=', 'lead')]}" groups="fbi_crm.group_fbi_crm_manager"/>
+                    
+                            
+            	</xpath>
+
+                <!-- Ajout du bouton donnant accès au calendrier du vendeur -->
+                <!-- Cacher le bouton "Dispo vendeur" 01/03/2024 -->
+                <xpath expr="//button[@name='action_schedule_meeting']" position="before">
+                     <button name="open_vendor_url" type="object" class="oe_stat_button" icon="fa-calendar"
+                        attrs="{'invisible': [('type', '=', 'lead')]}">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text"> Dispos</span>
+                            <span class="o_stat_text"> vendeur</span>
+                        </div>
+                    </button>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('oe_button_box')]" position="before">
+                	<div class="o-form-buttonbox oe_button_box position-relative o_not_full" style="padding-left: 10px; background:#dae8fc;" attrs="{'invisible': [('rdv_72_confirmation', '=', False)]}"><strong>Retour confirmation RDV 72H</strong></div>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('oe_button_box')]" position="before">
+                	<div class="o-form-buttonbox oe_button_box position-relative o_not_full" style="padding-left: 10px; background:#182a46; color:#fff" attrs="{'invisible': [('event_customer_decline', '=', False)]}"><strong>Refus de l'invitation RDV par le client</strong></div>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_show_potential_duplicates']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_schedule_meeting']/div/field[@name='calendar_event_count']" position="attributes">
+                      <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_schedule_meeting']/div/field[@name='calendar_event_count']" position="after">
+                      <field name="calendar_user_event_count" class="o_stat_value"/>
+                </xpath>
+
+                <!-- Ajout du code de relance et télévendeur sur les opportunités du CRM -->
+                <xpath expr="//div[hasclass('o_lead_opportunity_form_inline_fields')]" position="after">
+                    <field name="telemarketer_id" widget="many2one_avatar_user"/>
+                    <field name="commercial_annonce_id" required="True"/>
+                    <field name="code_relance_id"/>
+                </xpath>
+
+                <!-- Suppression du bouton d'enrichissement des leads  -->
+                <xpath expr="//button[@name='iap_enrich'][2]" position="replace"/>
+
+                <!-- Suppression du bouton PERDU  -->
+                <xpath expr="//button[@name='%(crm.crm_lead_lost_action)d']" position="replace"/>
+
+                <!-- Suppression du bouton WON  -->
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="replace"/>
+
+                <!-- Suppression de l'expecting closing et de la priorité -->
+                <xpath expr="//field[@name='date_deadline']/.." position="replace"/>
+                <xpath expr="//label[@for='date_deadline']" position="replace"/>
+
+                <!-- Suppression des étiquettes -->
+                <xpath expr="//field[@name='tag_ids']" position="replace"/>
+
+                <!-- On supprime pas le tableau de proba et de revenus espérés mais on masque son contenu (4 div à masquer) -->
+                <xpath expr="//div[hasclass('oe_title')]/h2/div[1]" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('oe_title')]/h2/div[2]" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('oe_title')]/h2/div[3]" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('oe_title')]/h2/div[4]" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!-- Suppression de l'onglet des notes internes -->
+                <xpath expr="//page[@name='internal_notes']" position="replace"/>
+                <xpath expr="//page[@name='extra']" position="replace"/>
+
+                <!-- Ajout d'informations dans l'onglet extra-information -->
+                <!-- <xpath expr="//page[@name='lead']//field[@id='mobile_page_lead']/.." position="after">-->
+                <xpath expr="/form/sheet/notebook/page[@name='lead']/group/group/field[@name='function']" position="before">
+                	<field name="contact_firstname"/>
+                </xpath>                
+                
+                <xpath expr="//field[@id='mobile_page_lead']/.." position="after">
+                    <field name="linkedin" widget="url" string="LinkedIn"/>
+                    <!-- <field name="contact_bis_nom"/> -->
+                    <label for="contact_bis_nom"/>
+                    <div class="o_row">
+                        <field name="contact_bis_nom"/>
+                        <field name="title_bis" placeholder="Titre 2" domain="[]" options='{"no_open": True}'/>
+                    </div>
+                    <field name="contact_bis_firstname"/>
+                    <field name="contact_bis_fonction"/>
+                    <field name="contact_bis_telephone" widget="phone"/>
+                    <field name="contact_bis_email" widget="email" string="Email 2" required="False" />
+                    <field name="contact_bis_linkedin" widget="url" string="LinkedIn 2"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='medium_id']" position="replace"/>
+                
+                <xpath expr="//field[@name='source_id']" position="replace"/>
+                
+                <xpath expr="//field[@name='referred']" position="replace"/>
+                
+                <xpath expr="//field[@name='day_open']" position="replace"/>
+                
+                <xpath expr="//field[@name='day_close']" position="replace"/>
+                
+                <!-- FIX HIDE LEAD PROPERTIES -->
+                <xpath expr="//field[@name='lead_properties']" position="attributes" >
+                	<attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <!-- FIX : ADD BUTTON CTRL QUALITE -->
+                <!-- Cacher le bouton 01/03/2024 -->
+                <!-- <xpath expr="//field[@name='lead_properties']" position="after" >
+                	<button name="action_controle_qualite" help="Passage au contrôle qualité" 
+                			attrs="{'invisible': ['|', '|', '|', '|', '|', '|', '|', '|', '|', '|', ('stage_id_name', '=', 'stage_envoi_et_archive'), ('stage_id_name', '=', 'stage_rdv_attente_conf_J_7'), ('stage_id_name', '=', 'stage_lead1'), ('stage_id_name', '=', 'En cours'), ('stage_id_name', '=', 'stage_rdv_a_envoyer'), ('stage_id_name', '=', 'stage_a_annuler_direction_decision'), ('stage_id_name', '=', 'stage_validation_dm'), ('stage_id_name','=' , 'stage_rdv_attente_conf_72h'), ('stage_id_name' ,'=', 'stage_a_annuler_direction'), ('stage_id_name', '=', 'stage_annulation_manager_faite'), ('stage_id_name', '=', 'stage_controle_qualite')]}" colspan="2" 
+                			class="oe_highlight ctrl_manager" type="object" string="Contrôle qualité" groups="fbi_crm.group_fbi_crm_manager"/>
+                </xpath> -->
+                
+                
+                <!-- RDV 21/02/2024 : Emails en Obligatoire -->
+                <xpath expr="//field[@name='email_from']" position="replace">
+                    <field name="email_from" string="Email" required="True" widget="email"/>
+                </xpath>
+                
+				<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='state_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+                
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='city']" position="replace">
+                	<field name="city" placeholder="City"/>
+                </xpath>                
+                
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]//field[@name='website']" position="before">        
+                	<field name="departement" placeholder="Departement" />
+                </xpath>
+                
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='zip']" position="replace">
+                	<field name="zip" placeholder="ZIP" class=""/>
+                </xpath>
+
+                <xpath expr="/form[1]/sheet[1]/notebook[1]" position="inside">
+                    <!-- Page Information Société -->
+                    <page string="Information Société" name="company_infos">
+                        <group>
+                            <group>
+                                <field name="company_nom_commercial"/>
+                                <field name="company_nom_enseigne"/>
+                                <field name="company_date_creation"/>
+                                <field name="company_siren"/>
+                                <field name="company_siret" required="True"/>
+                                <field name="company_code_naf"/>
+                                <field name="company_code_naf_family"/>
+                                <field name="company_nb_sites"/>
+                            </group>
+                            <group>
+                                <field name="company_dernier_ca"/>
+                                <field name="company_annee_ca"/>
+                                <field name="company_dernier_effectif"/>
+                                <field name="company_annee_effectif"/>
+                                <field name="company_tranche_effectif"/>
+                                <field name="lead_priority"/>
+                                <field name="company_zone_vente"/>
+                                <field name="company_type" string="Type"/>
+                            </group>
+                        </group>
+                    </page>
+
+                    <!-- Page Potentiel / Périmètre -->
+                    <page string="Potentiel / Périmètre" name="potential">
+                        <group>
+                            <group>
+                                <field name="potential_doc_entrants_nbr_facture_fournisseur"/>
+                                <field name="potential_doc_entrants_nbr_bon_de_livraison"/>
+                                <field name="potential_doc_entrants_nbr_bon_de_commande"/>
+                                <field name="potential_doc_sortants_descriptif"/>
+                            </group>
+                            <group>
+                            	<field name="potential_saisie_en_interne"/>
+                                <field name="potential_logiciel_comptable"/>
+                                <field name="potential_logiciel_metier"/>
+                                <field name="potential_chorus"/>
+                                <field name="lead_activities_count" invisible="1"/>
+                                <field name="lead_stages_count" invisible="1"/>
+                                <field name="last_date_calling_lead" invisible="1"/>
+                            </group>
+                        </group>
+                        <group colspan="4">
+                            <field name="personalized_comments"/>
+                        </group>
+                    </page>
+
+                    <!-- Page Commentaire -->
+                    <page string="Commentaire" name="comment" attrs="{'invisible': ['|', ('stage_id_name', '=', 'stage_lead1'), ('stage_id_name', '=', 'stage_en_cours')]}" >
+                     	<group colspan="4">
+                            <field name="commentaire_lines" string="Commentaire"/>
+                        </group>
+                        <!-- <group string="Email de Confirmation">
+                            <group>
+                            	<field name="commentaire_choice" string="Commentaire"/>
+                             	<field name="rdv_visio"/>
+                                <field name="email_template_confirm_choice"/>
+                            </group>
+                        </group> -->
+                        <!-- <group colspan="4">
+                             <p colspan="4" style="font-style: italic;padding: 10px;">
+                             	La case à cocher est activée automatiquement selon le RDV créé dans la fiche : <br/> 
+	                             <ul>
+		                             <li>Si, un lien de visoconférence a été créé, le statut sera coché.</li>
+		                             <li>Sinon, le statut reste décoché.</li>
+	                             </ul>
+                             </p>
+                        </group> -->
+                    </page>
+                    
+                    <!-- PAGE ÉVALUATION -->
+                    <page string="Évaluation" name="evaluation" attrs="{'invisible': ['|', ('stage_id_name', '=', 'stage_lead1'), ('stage_id_name', '=', 'stage_en_cours')]}" groups="fbi_crm.group_fbi_crm_controle_qualite,fbi_crm.group_fbi_crm_manager,fbi_crm.group_fbi_crm_dm">
+                    	<separator string="Fiche Contrôle Superviseur" colspan="4" class="bold_text_field"/>
+                    	<group>
+                    		<group>
+								<field name="eval_dematicall_fonction_interlocuteur" string="Fonction de l'Interlocuteur"/>
+								<field name="eval_dematicall_suivi_argumentaire" string="Suivi de l'Argumentaire"/>
+								<field name="eval_dematicall_interpret_donner_envie_rythme_de_voix_sourire" string="Interprétation / Donner Envie / Rythme de Voix / Sourire"/>
+								<field name="eval_dematicall_parle_de_visio_avant_rdv" string="Parle de Visio avant RDV"/>
+								<field name="eval_dematicall_comprehension_rdv_par_prospect" string="Compréhension du RDV par le Prospect"/>
+								<button name="action_controle_qualite" help="Passage au contrôle qualité" 
+										attrs="{'invisible': ['|', '|', '|', '|', '|', '|', '|', '|', '|', '|', ('stage_id_name', '=', 'stage_envoi_et_archive'), ('stage_id_name', '=', 'stage_rdv_attente_conf_J_7'), ('stage_id_name', '=', 'stage_lead1'), ('stage_id_name', '=', 'En cours'), ('stage_id_name', '=', 'stage_rdv_a_envoyer'), ('stage_id_name', '=', 'stage_a_annuler_direction_decision'), ('stage_id_name', '=', 'stage_validation_dm'), ('stage_id_name', '=', 'stage_rdv_attente_conf_72h'), ('stage_id_name' ,'=', 'stage_a_annuler_direction'), ('stage_id_name', '=', 'stage_annulation_manager_faite'), ('stage_id_name', '=', 'stage_controle_qualite')]}" colspan="2" class="oe_highlight ctrl_manager" 
+										type="object" string="Contrôle qualité" groups="fbi_crm.group_fbi_crm_manager"/>
+							</group>
+							<group>
+								<field name="eval_dematicall_rdv_propose_10_jours" string="RDV proposé à 10 Jours"/>
+								<field name="eval_dematicall_rdv_force" string="RDV Forcé"/>
+								<field name="eval_dematicall_implication_prospect_rdv_note" string="Implication Prospect (Le RDV à t-il été noté ?)"/>
+								<field name="eval_dematicall_eligibilite_volume_150_documents" string="Éligibilité Volume (150 Documents)"/>
+								<field name="eval_dematicall_valide" string="Validé"/>
+								<field name="eval_dematicall_verificateur" string="Vérificateur" widget="selection"/>
+								<field name="eval_dematicall_raison_non_validation_precisions_demander" string="Raison non-validation/Précision(s) à demander"/>
+							</group>
+                       	</group>
+                       	
+                       	<separator string="Fiche Contrôle Qualité" colspan="4" groups="fbi_crm.group_fbi_crm_manager" class="bold_text_field"/>
+                    	<group groups="fbi_crm.group_fbi_crm_manager">
+						    <group string="Accueil">
+						        <field name="eval_fbi_validation_nom_personne_a_contacter" string="Validation du Nom de la personne à contacter"/>
+						        <field name="eval_fbi_validation_fonction_personne_a_contacter" string="Validation de la fonction de la personne à contacter"/>
+						        <field name="eval_fbi_accueil_objection_1" string="Objection 1"/>
+						        <field name="eval_fbi_accueil_objection_2" string="Objection 2"/>
+						        <field name="eval_fbi_accueil_listen_by_id" widget="selection"/>
+						    </group>						    
+						    <group string="Sur contact argumenté">
+						        <field name="eval_fbi_validation_fonction" string="Validation de la fonction"/>
+						        <field name="eval_fbi_quelle_fonction" string="Quelle est la fonction"/>
+						        <field name="eval_fbi_qualite_suivi_argumentaire" string="Qualité du suivi argumentaire"/>
+						        <field name="eval_fbi_qualite_closing" string="Qualité du closing"/>
+						        <field name="eval_fbi_rdv_propose_a_10_jours" string="RDV proposé à 10 Jours"/>
+						        <field name="eval_fbi_objection_1" string="Objection 1"/>
+						        <field name="eval_fbi_qualite_closing_1" string="Qualité du closing"/>
+						        <field name="eval_fbi_objection_2" string="Objection 2"/>
+						        <field name="eval_fbi_qualite_closing_2" string="Qualité du closing"/>
+						        <field name="eval_fbi_objection_3" string="Objection 3"/>
+						        <field name="eval_fbi_qualite_closing_3" string="Qualité du closing"/>
+						        <field name="eval_fbi_interpret_donner_envie_rythme_de_voix_sourire" string="Interprétation / Donner Envie / Rythme de Voix / Sourire"/>
+						        <field name="eval_fbi_parle_de_visio_avant_rdv" string="Parle de Visio avant RDV"/>
+						        <field name="eval_fbi_plage_horaire_disponible_sur_agenda" string="Plage horaire disponible sur agenda"/>
+						    </group>							
+                    	</group>
+                    	
+                    	<separator string="Qualification du RDV" colspan="4" groups="fbi_crm.group_fbi_crm_manager" class="bold_text_field"/>
+                    	<group groups="fbi_crm.group_fbi_crm_manager">
+                            <group>
+                                <field name="qualif_fbi_volume_indique_par_prospect" string="Volume indiqué par le prospect"/>
+                                <field name="qualif_fbi_volume_indique_par_telpro" string="Volume indiqué par le Télépro"/>
+                                <field name="qualif_fbi_comprehension_objet_rdv" string="Compréhension objet du RDV"/>
+                                <field name="qualif_fbi_prise_conges_avec_confirmation_rdv_date_et_heure" string="Prise de congés avec confirmation du RDV (Date et heure)"/>
+                                <field name="qualif_fbi_implication_prospect_rdv_note" string="Implication prospect (Le RDV a t-il été noté ?)"/>
+                            </group>
+                            <group>
+                                <field name="qualif_fbi_tournure_phrase_risque_fantaisiste" string="Tournure phrase à risque, fantaisistes... ?"/>
+                                <field name="qualif_fbi_validation" string="Validation"/>
+                                <field name="qualif_fbi_verificateur" string="Vérificateur" widget="selection"/>
+                                <field name="qualif_fbi_commentaire_si_revision" string="Commentaire si Révision"/>
+                                <!-- <button name="action_direction" help="Passage à la direction" colspan="2" class="oe_highlight" type="object" string="Direction"/> -->
+                            </group>
+                        </group>
+                        
+                        <separator string="Validation Direction" colspan="4" groups="fbi_crm.group_fbi_crm_manager" invisible="1"/>
+                        <group groups="fbi_crm.group_fbi_crm_manager" invisible="1">
+                            <field name="qualif_direction_validation" string="Validation direction"/>
+                            <field name="qualif_direction_verificateur" string="Vérificateur" widget="selection"/>
+                            <!-- <button name="action_validation_direction" help="Validation direction" colspan="2" class="oe_highlight" type="object" string="Validation"/> -->
+                        </group>
+                    </page>
+                    <page string="RDV à Confirmer" name="rdv_pour_confirmation" attrs="{'invisible': ['|', ('stage_id_name', '=', 'stage_lead1'), ('stage_id_name', '=', 'stage_en_cours')]}">
+                    	<field name="rdv_72_confirmation" invisible="1"/>
+                    	<field name="event_customer_decline" invisible="1"/>
+                    	<field name="rdv_pour_confirmation" nolabel="1" colspan="4" placeholder="Rasion de la validation/annulation RDV"/>
+                    </page>
+                    
+                    <!-- FEAT DATE DEADLINE HISTORY 28/03/2024 -->
+                    <page string="Date DeadLine History" name="date_deadline_history" invisible="1">
+                    	<field name="lead_date_dealine_line" readonly="1">
+                    		<tree>
+                    			<field name="name" string="Description"/>
+                    			<field name="user_id" string="Utilisateur" />
+                    			<field name="date_change" string="Date de changement" />
+                    			<field name="old_date_activity" string="Ancienne date" />
+                    			<field name="lead_id" invisible="1"/>
+                    		</tree>
+                    	</field>
+                    </page>
+                    
+                </xpath>
+            </field>
+            
+            <field name="field_parent" eval="False"/>
+            <field name="key" eval="False"/>
+            <field name="mode">extension</field>
+            <field name="priority">160</field>
+            <field name="type">form</field>
+        </record>
+
+        <!-- Changement de l'affichage de la date restante  -->
+        <record id="crm_case_tree_view_oppor" model="ir.ui.view">
+            <field name="name">fbi_crm.crm.lead.tree.opportunity.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='my_activity_date_deadline']" position="attributes">
+                    <attribute name="widget">date</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='expected_revenue']" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//tree[1]/field[@name='company_id'][2]" position="replace"/>
+                
+                <xpath expr="//tree[1]" position="attributes">
+                    <!--attribute name="default_order">stage_id asc</attribute-->
+                    <attribute name="multi_edit">true</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='create_date']" position="after">
+                    <xpath expr="//field[@name='activity_ids']" position="move"/>
+                    <field name="activity_date_deadline" optional="show" attrs="{}"/>
+                    <xpath expr="//field[@name='campaign_id']" position="move"/>
+                    <field name="telemarketer_id" optional="show"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='my_activity_date_deadline']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                    <attribute name="options"/>
+                    <attribute name="optional">show</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='my_activity_date_deadline']" position="after">
+                    <field name="code_relance_id" optional="show"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='stage_id']" position="after">
+                    <field name="lead_priority" string="Priorité" optional="show"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='campaign_id']" position="attributes">
+                    <attribute name="optional">show</attribute>
+                </xpath>
+
+                <!-- Suppression du bouton d'envoi Email dans la vue liste -->
+                <xpath expr="//button[@name=%(crm.action_lead_mail_compose)d]" position="replace"/>
+
+                <!-- Suppression du bouton d'envoi SMS dans la vue liste -->
+                <xpath expr="//button[@name=%(crm_sms.crm_lead_act_window_sms_composer_multi)d]" position="replace"/>
+
+                <!-- Suppression de l'action Snooze dans la vue liste -->
+                <xpath expr="//button[@name='action_snooze']" position="replace"/>
+            </field>
+        </record>
+
+        <!-- Suppression de la possibilité de déplacer les post-it du Kanban et de l'ordre des colonnes -->
+        <record model="ir.ui.view" id="crm_case_kanban_view_leads_inherit_level_1">
+            <field name="name">fbi_crm.crm.case.kanban.view.leads.level1</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="records_draggable">0</attribute>
+                    <attribute name="groups_draggable">1</attribute>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('oe_kanban_footer')]" position="replace">
+                	<t t-if="record.rdv_72_confirmation.raw_value === true">
+                		<div t-attf-class="oe_kanban_footer" style="background: #dae8fc; padding: 5px;">
+	                        <div class="o_kanban_record_bottom">
+	                            <div class="oe_kanban_bottom_left">
+	                                <field name="rdv_72_confirmation" invisible="1" groups="base.group_user"/>
+	                                <p style="padding: 0px; margin:0px;">RDV 72 Heures</p>
+	                                <field name="activity_ids" widget="kanban_activity"/>
+	                            </div>
+	                            <div class="oe_kanban_bottom_right">
+	                                <field name="user_id" widget="many2one_avatar_user"/>
+	                            </div>
+	                        </div>
+	                    </div>
+	              	</t>
+	              	<t t-elif="record.event_customer_decline.raw_value === true">
+                		<div t-attf-class="oe_kanban_footer" style="background: #182a46; padding: 5px; color:#fff">
+	                        <div class="o_kanban_record_bottom">
+	                            <div class="oe_kanban_bottom_left">
+	                                <field name="event_customer_decline" invisible="1" groups="base.group_user"/>
+	                                <p style="padding: 0px; margin:0px;">Refus Invitation RDV</p>
+	                                <field name="activity_ids" widget="kanban_activity"/>
+	                            </div>
+	                            <div class="oe_kanban_bottom_right">
+	                                <field name="user_id" widget="many2one_avatar_user"/>
+	                            </div>
+	                        </div>
+	                    </div>
+	              	</t>
+	              	<t t-else="">
+                		<div t-attf-class="oe_kanban_footer">
+	                        <div class="o_kanban_record_bottom">
+	                            <div class="oe_kanban_bottom_left">
+	                                <field name="rdv_72_confirmation" invisible="1" groups="base.group_user"/>
+	                                <p style="padding: 0px; margin:0px;"> - </p>
+	                                <field name="activity_ids" widget="kanban_activity"/>
+	                            </div>
+	                            <div class="oe_kanban_bottom_right">
+	                                <field name="user_id" widget="many2one_avatar_user"/>
+	                            </div>
+	                        </div>
+	                    </div>
+	              	</t>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- Liste au lieu de kanban : Il faut mettre une séquence plus petite sur la vue liste -->
+        <record id="crm.crm_lead_action_pipeline_view_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="crm.crm_lead_action_pipeline"/>
+            <field name="multi" eval="False"/>
+            <field name="sequence" eval="False"/>
+            <field name="view_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="view_mode">tree</field>
+        </record>
+        
+        <record id="crm.crm_lead_action_pipeline_view_kanban" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="crm.crm_lead_action_pipeline"/>
+            <field name="multi" eval="False"/>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="view_mode">kanban</field>
+        </record>
+
+        <!-- Filtre Telemarketer Pipeline -->
+        <record id="crm_lead_view_search_telemarketer" model="ir.ui.view">
+            <field name="name">fbi_crm.lead.view.search.telemarketer</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="mode">primary</field>
+            <field name="priority">40</field>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='assigned_to_me']" position="before">
+                    <filter string="My Telemarketer Pipeline" name="telemarketer_assigned_to_me"
+                            domain="[('telemarketer_id', '=', uid)]"
+                            help="Opportunities that are assigned to me"/>
+                    <separator/>
+                </xpath>
+                
+                <xpath expr="//filter[@name='inactive']" position="before">
+                	<filter name="filter_no_non_exploitable" string="Pipeline" domain="[('stage_id', '!=', 'Non exploitable')]"/>
+                    <filter string="Non Exploitable" name="non_exploitable"
+                            domain="[('stage_id', '=', 'Non exploitable')]"
+                            help="Opportunities that are assigned to me"/>
+                </xpath>
+                
+                <xpath expr="//group" position="replace">
+                	<group expand="0" string="Group By" colspan="16">
+                		<filter name="stage" string="Etape" context="{'group_by':'stage_id'}"/>                		
+                		<filter string="Campagne" name="compaign" domain="[]" context="{'group_by':'campaign_id'}"/>
+                		<filter string="Télévendeur" name="telemarketer_id" domain="[]" context="{'group_by':'telemarketer_id'}"/>
+                        <filter string="Vendeur" name="salesperson" context="{'group_by':'user_id'}"/>
+                        <filter string="Code de Relance" name="code_relance_id" domain="[]" context="{'group_by':'code_relance_id'}"/>
+                        <filter string="Equie Commerciale" name="saleschannel" context="{'group_by':'team_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter name="city" string="Ville" context="{'group_by': 'city'}"/>
+                        <filter string="Pays" name="pays" context="{'group_by':'country_id'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Motif de la perte" name="lostreason" context="{'group_by':'lost_reason_id'}"/>
+                        <filter string="Société" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                        <filter string="Medium" name="medium" domain="[]" context="{'group_by':'medium_id'}"/>
+                        <filter string="Source" name="source" domain="[]" context="{'group_by':'source_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="Date de Création" name="month" context="{'group_by':'create_date:month'}"
+                                invisible="context.get('crm_lead_view_hide_month')"/>
+                        <filter string="Date de Création" name="group_by_create_date_day" context="{'group_by':'create_date:day'}"
+                                invisible="not context.get('crm_lead_view_hide_month')"/>
+                        <filter string="Date de conversion" name="date_conversion" context="{'group_by': 'date_conversion'}" groups="crm.group_use_lead"/>
+                        <filter string="Date de clôture prévue" name="date_deadline" context="{'group_by':'date_deadline'}"/>
+                        <filter string="Date de clôture" name="date_closed" context="{'group_by':'date_closed'}"/>
+                    </group>                
+                </xpath>
+            </field>
+        </record>
+        
+       <record model="ir.actions.act_window" id="crm_lead_action_telemarketer_pipeline">
+            <field name="name">Pipeline</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,kanban,graph,pivot,form,calendar,activity</field>
+            <field name="domain">[('type','=','opportunity')]</field>
+            <field name="context">{
+                'default_type': 'opportunity',
+                'search_default_assigned_to_me': 0,
+                'search_default_filter_no_non_exploitable': 1,
+                'search_default_telemarketer_assigned_to_me': 1
+                }
+            </field>
+            <field name="search_view_id" ref="crm_lead_view_search_telemarketer"/>
+        </record>
+        
+        <!-- Anaalyse par TelPRO - Campagne - Code relance -->
+        <record id="fbi_analyse_view_crm_case_opportunities_filter" model="ir.ui.view">
+            <field name="name">fbi.analyse.crm.lead.search.opportunity</field>
+            <field name="model">crm.lead</field>
+            <field name="priority">15</field>
+            <field name="arch" type="xml">
+                <search string="Search Opportunities">
+                    <field name="name" string="Opportunité" filter_domain="[
+                        '|', '|', '|', '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_name', 'ilike', self),
+                        ('email_from', 'ilike', self),
+                        ('name', 'ilike', self),
+                        ('contact_name', 'ilike', self)]"/>
+                    <field name="partner_id" operator="child_of" string="Client" filter_domain="[
+                        '|', '|', '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_name', 'ilike', self),
+                        ('email_from', 'ilike', self),
+                        ('contact_name', 'ilike', self)]"/>
+                    <field name="tag_ids" string="Etiquette" filter_domain="[('tag_ids', 'ilike', self)]"/>
+                    <field name="user_id" string="Vendeur"/>
+                    <field name="team_id" string="Equipe Commerciale"/>
+                    <field name="stage_id" domain="[]" string="Etape"/>
+                    <!-- <field name="country_id"/>
+                    <field name="city"/>
+                    <field name="phone_mobile_search"/>
+                    <field name="activity_state"/> -->
+                    <separator/>
+                    <filter string="Mon pipeline" name="assigned_to_me"
+                        domain="[('user_id', '=', uid)]"
+                        help="Opportunities that are assigned to me"/>
+                    <filter string="non assingé" name="unassigned"
+                        domain="[('user_id', '=', False)]" help="No salesperson"/>
+                    <filter string="Opportunités ouvertes" name="open_opportunities"
+                        domain="[('probability', '&lt;', 100), ('type', '=', 'opportunity')]"
+                        help="Open Opportunities"/>
+                    <separator/>
+                    <filter string="Messages non lus" name="message_needaction" domain="[('message_needaction', '=', True)]"/>
+                    <separator/>
+                    <filter string="Date de création" name="creation_date" date="create_date"/>
+                    <filter string="Date de clôture" name="close_date" date="date_closed"/>
+                    <separator/>
+                    <filter string="Gagné" name="won" domain="['&amp;', ('active', '=', True), ('stage_id.is_won', '=', True)]"/>
+                    <filter string="Perdu" name="lost" domain="['&amp;', ('active', '=', False), ('probability', '=', 0)]"/>
+                   <!--  <separator/>
+                    <filter invisible="1" string="Overdue Opportunities" name="overdue_opp" domain="['&amp;', ('date_closed', '=', False), ('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter invisible="1" string="Late Activities" name="activities_overdue"
+                        domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all opportunities for which the next action date is before today"/>
+                    <filter invisible="1" string="Today Activities" name="activities_today"
+                        domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+                        domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/> -->
+                    <separator/>
+                    <filter string="Archivé" name="inactive" domain="[('active', '=', False)]"/>
+                    <group expand="0" string="Group By" colspan="16">
+                        <filter name="stage" string="Etape" context="{'group_by':'stage_id'}"/>                		
+                		<filter string="Campagne" name="compaign" domain="[]" context="{'group_by':'campaign_id'}"/>
+                		<filter string="Télévendeur" name="telemarketer_id" domain="[]" context="{'group_by':'telemarketer_id'}"/>
+                        <filter string="Vendeur" name="salesperson" context="{'group_by':'user_id'}"/>
+                        <filter string="Code de Relance" name="code_relance_id" domain="[]" context="{'group_by':'code_relance_id'}"/>
+                        <filter string="Equipe Commerciale" name="saleschannel" context="{'group_by':'team_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="Société" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                        <filter string="Source" name="source" domain="[]" context="{'group_by':'source_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="Date de création" name="month" context="{'group_by':'create_date:month'}"
+                                invisible="context.get('crm_lead_view_hide_month')"/>
+                        <filter string="Date de création" name="group_by_create_date_day" context="{'group_by':'create_date:day'}"
+                                invisible="not context.get('crm_lead_view_hide_month')"/>
+                        <filter string="Date de conversion" name="date_conversion" context="{'group_by': 'date_conversion'}" groups="crm.group_use_lead"/>
+                        <filter string="Date de clôture prévue" name="date_deadline" context="{'group_by':'date_deadline'}"/>
+                        <filter string="Date de clôture" name="date_closed" context="{'group_by':'date_closed'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+		<record model="ir.actions.act_window" id="crm_lead_action_analyse_dematical_pipeline">
+            <field name="name">Analyse Télévendeur</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','opportunity'), '|', ('stage_id', 'in', ['Nouveau', 'Non exploitable', 'RDV', 'En cours']), ('stage_id', '=', False)]</field>
+            <field name="context">{'analysis_telemarketer' : 1}</field>
+            <field name="search_view_id" ref="fbi_analyse_view_crm_case_opportunities_filter"/>
+        </record>
+
+		<menuitem id="crm_lead_action_analyse_dematical_pipeline_menuitem"
+			name="Analyse Télévendeur" action="crm_lead_action_analyse_dematical_pipeline"
+			parent="crm.crm_menu_sales" groups="fbi_crm.group_fbi_crm_dm" sequence="1"/>
+        
+    </data>
+</odoo>

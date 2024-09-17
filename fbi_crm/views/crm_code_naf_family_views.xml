@@ -1,0 +1,37 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="crm_code_naf_family_view_tree">
+			<field name="name">fbi_crm.crm.code.naf.family.view.tree</field>
+			<field name="model">crm.code.naf.family</field>
+			<field name="arch" type="xml">
+				<tree editable="bottom">
+					<field name="code"/>
+					<field name="label"/>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="crm_code_naf_family_search">
+			<field name="name">fbi_crm.crm.code.naf.family.search</field>
+			<field name="model">crm.code.naf.family</field>
+			<field name="arch" type="xml">
+				<search string="State">
+					<field name="code"/>
+					<field name="label"/>
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+
+		<record id="crm_code_naf_family_action" model="ir.actions.act_window">
+			<field name="name">Familles des codes NAF</field>
+			<field name="res_model">crm.code.naf.family</field>
+			<field name="view_mode">tree</field>
+		</record>
+
+		<menuitem id="crm_code_naf_family_menuitem" name="Familles des codes NAF"
+			action="crm_code_naf_family_action" parent="crm.crm_menu_config"
+			groups="fbi_crm.group_fbi_crm_dm" />
+	</data>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="fbi_crm_view_calendar_event_calendar">
+            <field name="name">fbi_crm.event.calendar</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+            <field name="arch" type="xml">
+                <xpath expr="//calendar" position="attributes">
+                    <attribute name="quick_add" add="false" separator=" " />
+                    <attribute name="js_class">fbi_crm_attendee_calendar</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

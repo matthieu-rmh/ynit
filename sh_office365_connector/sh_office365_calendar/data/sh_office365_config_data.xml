@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sh_export_calender_cron" model="ir.cron">
+		<field name="name">Outlook - Import Events From Office365</field>
+		<field name="interval_number">30</field>
+		<field name="interval_type">minutes</field>
+		<field name="numbercall">-1</field>
+		<field name="doall" eval="False" />
+		<field name="model_id"
+			ref="sh_office365_connector.model_sh_office365_base_config" />
+		<field name="code">model._office365_calender_cron()</field>
+		<field name="state">code</field>
+		<field name="active">0</field>
+	</record>
+
+	<record id="sh_import_cron_calender_cron" model="ir.cron">
+		<field name="name">Outlook - Import Events from Queue</field>
+		<field name="interval_number">5</field>
+		<field name="interval_type">minutes</field>
+		<field name="numbercall">-1</field>
+		<field name="doall" eval="False" />
+		<field name="model_id"
+			ref="sh_office365_connector.model_sh_office365_base_config" />
+		<field name="code">model.import_from_queue_calendar()</field>
+		<field name="state">code</field>
+		<field name="active">0</field>
+	</record>
+</odoo>

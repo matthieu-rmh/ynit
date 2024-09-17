@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="ir_cron_fbi_crm_team" model="ir.cron">
+        <field name="name">SET Members FBI CRM Team</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">1</field>
+        <field name="active">0</field>
+        <field name="model_id" ref="model_crm_team"/>
+        <field name="code">model.assing_users_into_teams()</field>
+        <field name="state">code</field>
+    </record>
+    
+</odoo>

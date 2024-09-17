@@ -1,0 +1,93 @@
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button.disabled:not(.o_arrow_button_current), 
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button.disabled:not(.o_arrow_button_current):hover, 
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button.disabled:not(.o_arrow_button_current):focus {
+    color: #4A4F59;
+}
+
+.o_statusbar_status .btn-secondary.disabled, 
+.o_statusbar_status .disabled.o_bank_rec_widget_form_suggest_button, 
+.o_statusbar_status .btn-secondary:disabled, 
+.o_statusbar_status .o_bank_rec_widget_form_suggest_button:disabled {
+    color: #4A4F59;
+    opacity: 1;
+}
+
+.ctrl_quality {
+	color: #000 !important; 
+	background-color: #dae8fc !important; 
+}
+
+
+.ctrl_manager {
+	color: #000 !important; 
+	background-color: #f8cecc !important; 
+}
+
+.ctrl_direction {
+	color: #000 !important;
+	background-color: #e1d5e7 !important; 
+}
+
+.ctrl_telpro {
+	color: #000 !important;
+	background-color: #e3c800 !important; 
+}
+
+.o_pivot table .o_pivot_measure_row, 
+.o_pivot table .o_pivot_origin_row, 
+.o_pivot table .o_pivot_header_cell_closed, 
+.o_pivot table .o_pivot_header_cell_opened {
+    text-transform: capitalize;
+}
+
+.o_kanban_renderer .o_kanban_record {
+    margin: 5px 0 -1px !important;
+}
+
+.o_statusbar_status .btn.dropdown-toggle,
+.o_kanban_quick_add,
+.o_kanban_config .o_column_edit, 
+.o_kanban_config .o_column_delete,
+.o_column_quick_create,
+.o_kanban_counter_side,
+#calendar_sync_wrapper {
+	display: none;
+}
+
+.o_content .o_content_nb_calendar_body {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    overflow: hidden !important;
+}
+
+.o_content .o_content_nb_calendar_body .o_nb_calendar_page {
+	border: 1px solid #C9CCD2;
+    box-shadow: 0 5px 20px -15px rgba(0, 0, 0, 0.4);
+    margin: 24px 12px 48px;
+    padding: 24px;
+    max-width: calc(100% - 12px);
+    width: fit-content !important;
+    direction: ltr;
+    background-color: white;
+    color: var(--AccountFinancial-text-color, #4A4F59);
+    min-width: -webkit-fill-available;
+}
+
+.bold_text_field {
+	font-weight: bold !important;
+    font-size: 14px;
+}
+
+label[for="qualif_fbi_validation"],
+label[for="qualif_fbi_verificateur"],
+label[for="qualif_fbi_commentaire_si_revision"] {
+    font-weight: bold !important;
+    font-size: 14px !important;
+    text-decoration: underline;
+}

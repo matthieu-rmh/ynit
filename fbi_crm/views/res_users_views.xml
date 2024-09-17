@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+
+        <!-- Ajout du code de relance sur les opportunités du CRM -->
+        <record model="ir.ui.view" id="res_users_view_form">
+            <field name="name">fbi_crm.res.users.view.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="/form[1]/sheet[1]/notebook[1]" position="inside">
+                    <!-- Page Information Société -->
+                    <page string="FBI CRM" name="fbi_crm_settings">
+                        <group>
+                            <group>
+                                <field name="default_commercial_annonce_id"/>
+                                <field name="vendor_ms_calendar_url"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+            <field name="field_parent" eval="False"/>
+            <field name="key" eval="False"/>
+            <field name="mode">extension</field>
+            <field name="priority">160</field>
+            <field name="type">form</field>
+        </record>
+    </data>
+</odoo>

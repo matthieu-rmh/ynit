@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="commercial_annonce_ysl" model="crm.commercial_annonce">
+            <field name="name">Yanis SOREL</field>
+        </record>
+        <record id="commercial_annonce_dba" model="crm.commercial_annonce">
+            <field name="name">Daniel BENNOUNA</field>
+        </record>
+     </data>
+</odoo>

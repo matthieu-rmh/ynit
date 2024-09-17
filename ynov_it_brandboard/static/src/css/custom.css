@@ -1,0 +1,143 @@
+body {
+  	font-family: 'Mulish', sans-serif;
+  	font-size: 12px;
+}
+
+.o_home_menu .o_app .o_caption {
+    font-family: 'Mulish', sans-serif;
+}
+
+h6, 
+.h6, 
+h5, 
+.h5, 
+.o_legacy_kanban_view.o_kanban_dashboard .o_kanban_record .o_kanban_card_manage_pane.container div[class*="col-"] > .o_kanban_card_manage_title, 
+.o_legacy_kanban_view.o_kanban_dashboard .o_kanban_record .o_kanban_card_manage_pane.o_container_small div[class*="col-"] > .o_kanban_card_manage_title, 
+.o_kanban_dashboard:not(.o_legacy_kanban_view) .o_kanban_record > div .o_kanban_card_manage_pane.container div[class*="col-"] > .o_kanban_card_manage_title, 
+.o_kanban_dashboard:not(.o_legacy_kanban_view) .o_kanban_record > div .o_kanban_card_manage_pane.o_container_small div[class*="col-"] > .o_kanban_card_manage_title, 
+h4, 
+.h4, 
+h3, 
+.h3, 
+h2, 
+.h2, 
+h1, 
+.h1 {
+	font-family: 'Mulish', sans-serif;
+}
+
+.o_home_menu_background, .o_web_client.o_home_menu_background {
+	background-color: #1E3252;
+	background-image: url(/ynov_it_brandboard/static/src/img/bg.png);
+}
+
+.o_main_navbar {
+	background: linear-gradient(45deg, #1E3252, #0D1C31);
+}
+
+.btn-fill-primary, .btn-primary {
+    background-color: #86E1A6;
+    border-color: #86E1A6;
+}
+
+
+.o_base_settings .o_setting_container .settings_tab {
+	background: #182b47;
+}
+
+.o_base_settings .o_setting_container .settings_tab .selected {
+    background-color: #1E3252;
+}
+
+.form-check-input:checked {
+    background-color: #86E1A6;
+    border-color: #86E1A6;
+}
+
+a,
+.btn-link, 
+.btn-secondary, 
+.o_bank_rec_widget_form_suggest_button {
+    color: #86E1A6;
+}
+
+.o_main_navbar .o_menu_systray > * > a .badge, .o_main_navbar .o_menu_systray > * > .dropdown > a .badge, 
+.o_main_navbar .o_menu_systray > * > button .badge, .o_main_navbar .o_menu_systray > * > label .badge {
+    background-color: #86E1A6;
+}
+
+.text-primary {
+    color: #86E1A6 !important;
+}
+
+.o_tooltip.active::before {
+    border-color: #86E1A6;
+}
+
+.o_tooltip.active {
+    border: 3px solid #86E1A6 !important;
+}
+
+.o_tooltip::before {
+	background: radial-gradient(#C3CDA6, #86E1A6);
+}
+
+.btn-fill-odoo, .btn-odoo {
+    background-color: #86E1A6;
+    border-color: #86E1A6;
+}
+
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current.disabled {
+    background-color: #86E1A6;
+}
+
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current.disabled:after, 
+.o_field_statusbar > .o_statusbar_status > .o_arrow_button.o_arrow_button_current.disabled:before {
+    border-left-color: #86E1A6;
+}
+
+.o_searchview_facet .o_searchview_facet_label {
+    background: #86E1A6;
+}
+
+.btn-fill-primary:hover, .btn-primary:hover {
+    color: #FFF;
+    background-color: #1E3252;
+    border-color: #1E3252;
+}
+
+.btn-outline-primary:hover {
+    color: #FFF;
+    background-color: #1E3252;
+    border-color: #1E3252;
+}
+
+a:hover,
+.btn-secondary:hover, 
+.o_bank_rec_widget_form_suggest_button:hover, 
+.btn-secondary:focus, 
+.o_bank_rec_widget_form_suggest_button:focus, 
+.btn-secondary.focus, 
+.focus.o_bank_rec_widget_form_suggest_button {
+	color: #1E3252;
+}
+
+.btn-fill-odoo:hover, .btn-odoo:hover {
+    background-color: #1E3252;
+    border-color: #1E3252;
+}
+
+.btn-outline-primary {
+    color: #86E1A6;
+    border-color: #86E1A6;
+}
+
+.o_calendar_renderer .o_calendar_widget .fc-timeGridDay-view .fc-widget-header.fc-today, 
+.o_calendar_renderer .o_calendar_widget .fc-timeGridWeek-view .fc-widget-header.fc-today {
+    background: #86E1A6;
+}
+
+.o_ChatWindowHeader {
+    background-color: #1E3252;
+    color: #FFFFFF;
+}

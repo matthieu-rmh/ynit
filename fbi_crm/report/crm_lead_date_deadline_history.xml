@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="crm_date_deadline_history_report_view_tree" model="ir.ui.view">
+            <field name="name">crm.date.deadline.activity.report.tree</field>
+            <field name="model">crm.date.deadline.activity.report</field>
+            <field name="arch" type="xml">
+                <tree default_order="date_change desc">
+                    <field name="date_change"/>
+                    <field name="lead_create_date"/>
+                    <field name="user_id"/>
+                    <field name="telemarketer_id"/>
+                    <field name="activity_date_deadline"/>
+                    <field name="campaign_id"/>
+                    <field name="code_relance_id"/>
+                    <field name="potential_logiciel_comptable"/>
+                    <field name="crm_lead_id"/>
+                    <field name="partner_id"/>
+                    <field name="stage_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="crm_date_deadline_history_report_view_search" model="ir.ui.view">
+            <field name="name">crm.date.deadline.activity.report.search</field>
+            <field name="model">crm.date.deadline.activity.report</field>
+            <field name="arch" type="xml">
+                <search string="Date d'échéance - Analyses">
+                    <field name="crm_lead_id" string="Opportunité"/>
+                    <field name="user_id" string="Commercial"/>
+                    <field name="telemarketer_id" string="TelPro"/>
+                    <field name="partner_id" string="Partenaire"/>
+                    <separator/>
+                    <filter name="filter_date" date="date_change"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Commercial" name="group_by_user_id" context="{'group_by': 'user_id'}"/>
+                        <filter string="TelPro" name="group_by_telemarketer_id" context="{'group_by': 'telemarketer_id'}"/>
+                        <filter string="Campagne" name="group_by_campaign_id" context="{'group_by': 'campaign_id'}"/>
+                        <filter string="Code Relance" name="group_by_code_relance_id" context="{'group_by': 'code_relance_id'}"/>
+                        <filter string="Etape" name="group_by_stage_id" context="{'group_by': 'stage_id'}"/>
+                        <filter string="Opportunité" name="group_by_crm_lead_id" context="{'group_by': 'crm_lead_id'}"/>
+                        <filter string="Partenaire" name="group_by_partner_id" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Date de Création" name="group_by_lead_date_creation" context="{'group_by': 'lead_create_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+       <record id="crm_date_deadline_history_report_action" model="ir.actions.act_window">
+           <field name="name">Analyse - Date d'échéance</field>
+           <field name="res_model">crm.date.deadline.activity.report</field>
+           <field name="view_mode">tree</field>
+           <field name="context">{
+           		'search_default_group_by_crm_lead_id': 1,
+           }</field>
+            <field name="domain">[]</field>
+       </record>
+       
+       <menuitem parent="crm.crm_menu_sales" id="menu_crm_date_deadline_history_report_action" action="crm_date_deadline_history_report_action" sequence="1" />
+
+</odoo>

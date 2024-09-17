@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record model="crm.stage" id="stage_en_cours">
+        <field name="name">En cours</field>
+        <field name="fold">False</field>
+        <field name="is_won">False</field>
+        <field name="sequence">2</field>
+    </record>
+    
+    <record model="crm.stage" id="stage_rdv">
+        <field name="name">RDV</field>
+        <field name="fold">False</field>
+        <field name="is_won">False</field>
+        <field name="sequence">3</field>
+    </record>
+    
+    <!-- <record model="crm.stage" id="stage_validation_manager">
+        <field name="name">A valider - Manager</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">4</field>
+    </record> -->
+    
+    <record model="crm.stage" id="stage_validation_dm">
+        <field name="name">A valider - Direction</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">5</field>
+    </record>
+    
+    <!-- <record model="crm.stage" id="stage_valide">
+        <field name="name">Valide</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">10</field>
+    </record> -->
+    
+    <record model="crm.stage" id="stage_non_exploitable">
+        <field name="name">Non exploitable</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">100</field>
+    </record>
+    
+    <!-- On ne peut pas supprimer les étapes inutilisées ici car elles peuvent toujours être liées à des opportunités -->
+    <!-- Il faut passer par une action de migration -->
+    <!--    <delete model="crm.stage" id="crm.stage_lead2"/>-->
+    <!--    <delete model="crm.stage" id="crm.stage_lead3"/>-->
+    <!--    <delete model="crm.stage" id="crm.stage_lead4"/>-->
+    
+    <record model="crm.stage" id="stage_envoi_et_archive">
+        <field name="name">Envoi commercial RDV archivés</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">6</field>
+    </record>
+    
+    <record model="crm.stage" id="stage_annule_client">
+        <field name="name">Annulé Client</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">7</field>
+    </record>
+    
+    <record model="crm.stage" id="stage_report_commercial">
+        <field name="name">Report Commercial</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">8</field>
+    </record>
+    
+    <record model="crm.stage" id="stage_annule_commercial">
+        <field name="name">Annulé Commercial</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">9</field>
+    </record>
+    
+    <record model="crm.stage" id="stage_controle_qualite">
+        <field name="name">Contrôle Qualité</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">11</field>
+        <!-- <field name="need_event">False</field> -->
+    </record>
+    
+    <record model="crm.stage" id="stage_a_annuler_direction">
+        <field name="name">A Annuler Décision Direction</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">13</field>
+        <!-- <field name="need_event">False</field> -->
+    </record>
+    
+    <!-- <record model="crm.stage" id="stage_a_annuler_direction_decision">
+        <field name="name">A Annuler Décision Direction</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">15</field>
+        <field name="need_event">False</field>
+    </record> -->
+    
+    <record model="crm.stage" id="stage_annulation_manager_faite">
+        <field name="name">Annulation Manager Faite</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">16</field>
+        <!-- <field name="need_event">False</field> -->
+    </record>
+    
+    <record model="crm.stage" id="stage_rdv_attente_conf_72h">
+        <field name="name">RDV en attente de confirmation 72h</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">17</field>
+        <!-- <field name="need_event">True</field> -->
+    </record>
+    
+    <record model="crm.stage" id="stage_rdv_a_envoyer">
+        <field name="name">RDV A Envoyer</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">18</field>
+        <!-- <field name="need_event">True</field> -->
+    </record>
+    
+    <record model="crm.stage" id="stage_rdv_attente_conf_J_7">
+        <field name="name">RDV A Confirmer H-48</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">19</field>
+       <!--  <field name="need_event">True</field> -->
+    </record>
+    
+    <!-- <record model="crm.stage" id="stage_a_classer">
+        <field name="name">Archives à Classer</field>
+        <field name="fold">True</field>
+        <field name="is_won">False</field>
+        <field name="sequence">20</field>
+        <field name="need_event">True</field>
+    </record> -->
+    
+</odoo>

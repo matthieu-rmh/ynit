@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+        "name": "Odoo 17 Ynit",
+        "type": "debugpy",
+        "request": "launch",
+        "stopOnEntry": false,
+        "python": "/usr/bin/python3",
+        "console": "integratedTerminal",
+        "program": "/home/aranorn/apps/odoo-16.0/odoo-bin",
+        "args": [
+            "--config=/etc/odoo_ynit.conf",
+            "-u",
+            "confidentiality_agreement"
+ 
+        ],
+        "cwd": "${workspaceFolder}",
+        "env": {}
+    }]
+}

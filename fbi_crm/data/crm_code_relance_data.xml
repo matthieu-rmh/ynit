@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="crm_code_relance_4" model="crm.code_relance">
+            <field name="code">4</field>
+            <field name="label">ACCUEIL RAPPEL NON DEFINI</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_5" model="crm.code_relance">
+            <field name="code">5</field>
+            <field name="label">ACCUEIL BARRAGE MAIL</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_6" model="crm.code_relance">
+            <field name="code">6</field>
+            <field name="label">ACCUEIL NRP</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_7" model="crm.code_relance">
+            <field name="code">7</field>
+            <field name="label">ACCUEIL REP</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_8" model="crm.code_relance">
+            <field name="code">8</field>
+            <field name="label">ACCUEIL QUALIF / OBJECTION / FUITE / REFUS ÉCOUTE</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_9" model="crm.code_relance">
+            <field name="code">9</field>
+            <field name="label">RAPPEL CONVENU ASSISTANTE</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_11" model="crm.code_relance">
+            <field name="code">11</field>
+            <field name="label">INTERLOCUTEUR REP</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_12" model="crm.code_relance">
+            <field name="code">12</field>
+            <field name="label">CA RAPPEL CONVENU</field>
+            <field name="state">en_cours</field>
+        </record>
+        <!-- <record id="crm_code_relance_13" model="crm.code_relance">
+            <field name="code">13</field>
+            <field name="label">CA RAPPEL CONVENU (MOTIVE) - SENDOC</field>
+            <field name="state">en_cours</field>
+        </record> -->
+        <record id="crm_code_relance_15" model="crm.code_relance">
+            <field name="code">15</field>
+            <field name="label">CA PI</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_16" model="crm.code_relance">
+            <field name="code">16</field>
+            <field name="label">CA NON ELIGIBLE</field>
+            <field name="state">en_cours</field>
+        </record>
+        <record id="crm_code_relance_17" model="crm.code_relance">
+            <field name="code">17</field>
+            <field name="label">CA PARC HORS CIBLE</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_19" model="crm.code_relance">
+            <field name="code">19</field>
+            <field name="label">DOUBLON</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_20" model="crm.code_relance">
+            <field name="code">20</field>
+            <field name="label">DEC EXT</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_21" model="crm.code_relance">
+            <field name="code">21</field>
+            <field name="label">FNO</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_22" model="crm.code_relance">
+            <field name="code">22</field>
+            <field name="label">NRP ACC x3</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_23" model="crm.code_relance">
+            <field name="code">23</field>
+            <field name="label">REP ACC x3</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_25" model="crm.code_relance">
+            <field name="code">25</field>
+            <field name="label">CONTEXTE RIEN A FAIRE</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_27" model="crm.code_relance">
+            <field name="code">27</field>
+            <field name="label">FIN D'ACTIVITE</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_28" model="crm.code_relance">
+            <field name="code">28</field>
+            <field name="label">CLIENT</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_99" model="crm.code_relance">
+            <field name="code">99</field>
+            <field name="label">DOUBLON IMPORT SIRET</field>
+            <field name="state">non_exploitable</field>
+        </record>
+        <record id="crm_code_relance_1" model="crm.code_relance">
+            <field name="code">1</field>
+            <field name="label">RDV XEROX</field>
+            <field name="state">rdv</field>
+        </record>
+        <record id="crm_code_relance_3" model="crm.code_relance">
+            <field name="code">3</field>
+            <field name="label">RDV APPROCHE COMPTA</field>
+            <field name="state">rdv</field>
+        </record>
+    </data>
+</odoo>

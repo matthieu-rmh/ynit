@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id='sh_office365_contact_form' model='ir.ui.view'>
+		<field name="name">sh.office365.contact.form</field>
+		<field name="model">sh.office365.base.config</field>
+		<field name="inherit_id" ref="sh_office365_connector.sh_get_creds_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//sheet/group" position="after">
+				<h1 class="text-primary">Contacts</h1>
+				<group>
+					<group>
+						<field name="import_contact" />
+						<field name="last_sync_date" readonly="1" />
+					</group>
+
+					<group>
+						<field name="auto_schedule" />
+						<field name="manage_log" />
+					</group>
+				</group>
+				<h3 attrs="{'invisible': [('import_contact', '=', False)]}">Sync
+					Based On :</h3>
+				<group>
+					<group>
+						<field name="with_mobile"
+							attrs="{'invisible': [('import_contact', '=', False)]}" />
+						<field name="with_email"
+							attrs="{'invisible': [('import_contact', '=', False)]}" />
+					</group>
+					<group>
+						<field name="sync_image"
+							attrs="{'invisible': [('import_contact', '=', False)]}" />
+					</group>
+				</group>
+				<div class="row mb-4" id="imp">
+					<div class="col-md-6 col-xl-6 col-lg-6 col-sm-6">
+						<button name="sync_office_contact"
+							class="btn btn-primary" type="object"
+							string="Sync Contacts" />
+					</div>
+					<div class="col-md-6 col-xl-6 col-lg-6 col-sm-6">
+						<button name="reset_contacts" type="object"
+							string="Reset" />
+					</div>
+				</div>
+			</xpath>
+		</field>
+	</record>
+</odoo>

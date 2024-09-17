@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Odoo 16.0\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: ynov_it_brandboard
+#: model_terms:ir.ui.view,arch_db:ynov_it_brandboard.contactus_inherit
+msgid ""
+"Pour toute demande d'information ou question concernant notre groupe ou nos services, n'hésitez pas à nous contacter.<br/>\n"
+"\t\t\t\t\tNous nous engageons à vous répondre dans les plus brefs délais !"
+msgstr ""
+"If you have any questions or requests for information about our group or our services, please do not hesitate to contact us.<br/>\n"
+"\t\t\t\t\tWe promise to get back to you as soon as possible!"
+
+
+#. module: ynov_it_brandboard
+#: model_terms:ir.ui.view,arch_db:ynov_it_brandboard.footer_custom_inherit
+msgid ""
+"Le groupe Ynov'iT, spécialiste en technologies de l'information, en gestion "
+"de flux documentaires et en solutions d'impression, accompagne les "
+"entreprises dans leur transformation digitale. Grâce à nos 80 collaborateurs"
+" expérimentés, nous offrons des services sur mesure, une expertise reconnue "
+"et un engagement fort envers la satisfaction client."
+msgstr ""
+"The Ynov'iT group, a specialist in information technology, document "
+"workflow management and printing solutions, supports "
+"businesses in their digital transformation. Thanks to our 80 experienced"
+" employees, we offer customised services, recognised expertise "
+"and a strong commitment to customer satisfaction."

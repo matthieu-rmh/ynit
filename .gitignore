@@ -1,0 +1,11 @@
+*.pyc
+/.vs/modules/v17/.wsuo
+/.vs/modules/v17/TestStore/0/000.testlog
+/.vs/modules/FileContentIndex/70d0bbfb-5dbe-4466-8792-6c947f88f9b6.vsidx
+/.vs/modules/FileContentIndex/aa55301e-2768-4576-add6-759213784e3f.vsidx
+/.vs/modules/FileContentIndex/b4716c83-7774-4c02-9f8a-3c2d97827551.vsidx
+/.vs/modules/FileContentIndex/c7affa6d-09de-4207-ba11-ef0162012d4e.vsidx
+/.vs/modules/FileContentIndex/read.lock
+/.vs/slnx.sqlite
+/.vs/modules/v17/TestStore/0/testlog.manifest
+/.vs/VSWorkspaceState.json

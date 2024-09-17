@@ -1,0 +1,240 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="fbi_crm_template_meeting_need_validation_manager_mail" model="mail.template">
+            <field name="name">Calendar: Meeting need validation by manager</field>
+            <field name="model_id" ref="calendar.model_calendar_event"/>
+            <field name="subject">Nouveau RDV {{ object.name }} à valider</field>
+            <field name="email_from">{{ (object.telemarketer_id.email_formatted or user.email_formatted or '') }}</field>
+            <field name="description">Demande de validation au manager</field>
+            <field name="body_html" type="html">
+                <div>
+                    <t t-set="customer" t-value="object.opportunity_id.partner_id"/>
+                    <t t-set="rdv_visio" t-value="object.opportunity_id.rdv_visio"/>
+                    <t t-set="colors"
+                       t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+                    <p>
+                        Bonjour,
+                        <br/>
+                        <br/>
+                        Un nouveau RDV a été pris avec
+                        <t t-out="customer.name or ''">TEST</t>
+                    </p>
+                    <p>Merci de bien vouloir prendre connaissance du dossier afin de lui donner sa première
+                        validation.
+                        <br/>
+                    </p>
+                    <table cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tr>
+                                            <td style="border-top-start-radius: 3px; border-top-end-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B; min-width: 150px;"
+                                                width="150">
+                                                <t t-out="format_datetime(dt=object.start, tz=None, dt_format='EEEE', lang_code=object.env.lang) or ''">
+                                                    Tuesday
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
+                                                <t t-out="str(object.start.day) or ''">4</t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;">
+                                                <t t-out="format_datetime(dt=object.start, tz=None, dt_format='MMMM y', lang_code=object.env.lang) or ''">
+                                                    May 2021
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-end-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-start-radius: 3px;">
+                                                <t t-if="not object.allday">
+                                                    <div>
+                                                        <t t-out="format_time(time=object.start, tz=None, time_format='short', lang_code=object.env.lang) or ''">
+                                                            11:00 AM
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="20" style="width: 20px;">
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong>Détails du RDV</strong>
+                                        <br/>
+                                    </p>
+                                    <ul>
+                                        <t t-if="rdv_visio">
+                                            <li>En visio</li>
+                                        </t>
+                                        <t t-else="">
+                                            <li>En distanciel</li>
+                                        </t>
+                                        <t t-if="object.location">
+                                            <li>Lieu :
+                                                <t t-out="object.location or ''">Bruxelles</t>
+                                                (<a target="_blank"
+                                                    t-attf-href="http://maps.google.com/maps?oi=map&amp;q={{object.location}}">
+                                                    View Map</a>)
+                                            </li>
+                                        </t>
+                                        <t t-if="not object.allday and object.duration">
+                                            <li>Durée :
+                                                <t t-out="('%dH%02d' % (object.duration,round(object.duration*60)%60)) or ''">
+                                                    0H30
+                                                </t>
+                                            </li>
+                                        </t>
+                                        <li>Invités
+                                            <ul>
+                                                <li t-foreach="object.attendee_ids"
+                                                    t-as="attendee">
+                                                    <div t-attf-style="display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};"></div>
+                                                    <span style="margin-left:5px" t-out="attendee.common_name or ''">
+                                                        Mitchell Admin
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align: center; padding: 16px 0px 16px 0px;">
+                        <a t-attf-href="/web#id={{object.id}}&amp;model=calendar.event"
+                           style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px">
+                            <t t-out="'Voir'">Voir</t>
+                        </a>
+                    </div>
+                    <br/>
+                    Merci,
+                    <t t-if="object.user_id.signature">
+                        <br/>
+                        <t t-out="object.user_id.signature or ''">--<br/>Mitchell Admin
+                        </t>
+                    </t>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>        <!--Email template -->
+        <record id="fbi_crm_template_meeting_need_validation_dm_mail" model="mail.template">
+            <field name="name">Calendar: Meeting need validation by DM</field>
+            <field name="model_id" ref="calendar.model_calendar_event"/>
+            <field name="subject">Nouveau RDV {{ object.name }} à valider</field>
+            <field name="email_from">{{ (object.telemarketer_id.email_formatted or user.email_formatted or '') }}</field>
+            <field name="description">Invitation email to new attendees</field>
+            <field name="body_html" type="html">
+                <div>
+                    <t t-set="customer" t-value="object.opportunity_id.partner_id"/>
+                    <t t-set="colors"
+                       t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+                    <p>
+                        Bonjour,
+                        <br/>
+                        <br/>
+                        Un nouveau RDV a été pris avec
+                        <t t-out="customer.name or ''">TEST</t>
+                    </p>
+                    <p>Merci de bien vouloir prendre connaissance du dossier afin de lui donner validation <bold>
+                        définitive</bold>.
+                        <br/>
+                    </p>
+                    <table cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td style="min-width: 130px;" width="130px;">
+                                    <div style="border-top-start-radius: 3px; border-top-end-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;">
+                                        <t t-out="format_datetime(dt=object.start, tz=None, dt_format='EEEE', lang_code=object.env.lang) or ''">
+                                            Tuesday
+                                        </t>
+                                    </div>
+                                    <div style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
+                                        <t t-out="str(object.start.day) or ''">4</t>
+                                    </div>
+                                    <div style="font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;">
+                                        <t t-out="format_datetime(dt=object.start, tz=None, dt_format='MMMM y', lang_code=object.env.lang) or ''">
+                                            May 2021
+                                        </t>
+                                    </div>
+                                    <div style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-end-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-start-radius: 3px;">
+                                        <t t-if="not object.allday">
+                                            <div>
+                                                <t t-out="format_time(time=object.start, tz=None, time_format='short', lang_code=object.env.lang) or ''">
+                                                    11:00 AM
+                                                </t>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </td>
+                                <td width="20px;">
+                                </td>
+                                <td style="padding-top: 5px;">
+                                    <p>
+                                        <strong>Détails du RDV</strong>
+                                        <br/>
+                                    </p>
+                                    <ul>
+                                        <t t-if="object.location">
+                                            <li>Lieu :
+                                                <t t-out="object.location or ''">Bruxelles</t>
+                                                (<a target="_blank"
+                                                    t-attf-href="http://maps.google.com/maps?oi=map&amp;q={{object.location}}">
+                                                    View Map</a>)
+                                            </li>
+                                        </t>
+                                        <t t-if="not object.allday and object.duration">
+                                            <li>Durée :
+                                                <t t-out="('%dH%02d' % (object.duration,round(object.duration*60)%60)) or ''">
+                                                    0H30
+                                                </t>
+                                            </li>
+                                        </t>
+                                        <li>Invités
+                                            <ul>
+                                                <li t-foreach="object.attendee_ids"
+                                                    t-as="attendee">
+                                                    <div t-attf-style="display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};"></div>
+                                                    <span style="margin-left:5px" t-out="attendee.common_name or ''">
+                                                        Mitchell Admin
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align: center; padding: 16px 0px 16px 0px;">
+                        <a t-attf-href="/web#id={{object.id}}&amp;model=calendar.event"
+                           style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px">
+                            <t t-out="'Voir'">Voir</t>
+                        </a>
+                    </div>
+                    <br/>
+                    Merci,
+                    <t t-if="object.user_id.signature">
+                        <br/>
+                        <t t-out="object.user_id.signature or ''">--<br/>Mitchell Admin
+                        </t>
+                    </t>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

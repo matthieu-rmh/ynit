@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+
+    	<template id="login_ynov_it" inherit_id="web.login_layout">
+			<xpath expr="//div[2][hasclass('text-center')]" position="replace">
+				<div class="text-center ynov-it-footer" t-if="not disable_footer">
+			    	<hr/>
+			    	<a href="https://ynit.fr" target="_blank">Powered by <span>Ynov'iT Groupe</span></a>
+			    </div>
+			</xpath>
+	    </template>
+
+	    <template id="mail_notification_light_inherit" inherit_id="mail.mail_notification_light">
+	    	<xpath expr="//td[contains(text(), 'Powered by')]" position="replace">
+	    		<td align="center" style="min-width: 590px;"></td>
+	    	</xpath>
+	    </template>
+
+	    <template id="mail_notification_layout" inherit_id="mail.mail_notification_layout">
+	    	<xpath expr="//p[contains(text(), 'Powered by')]" position="replace">
+	    		<p></p>
+	    	</xpath>
+	    </template>
+    	
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <template id="ynit_confidentiality_agreement_report_view">
+            <t t-call="web.html_container" >
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="company" t-value="doc.current_company"/>
+                    <t t-call="confidentiality_agreement.confidentiality_agreement_layout">
+                        
+                            <!-- <div style="display: block;background-color: lightpink; height: 1000px; width: 1000px;">
+        
+                                <p>oi <span t-esc="doc.name"/></p>
+                            </div> -->
+                        
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="confidentiality_agreement_layout">
+            <t t-call="web.html_container">
+                <div class="header">
+                    <div class="row">
+                        <center>Header</center>
+                    </div>
+                </div>
+                
+                <div class="footer" style="margin-bottom: 3000px;">
+                    <div class="row">
+                        <center><span>Page </span><span class="page" /> of <span class="topage" /></center>
+                    </div>
+                </div>
+            </t>
+          </template>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,503 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <data>
+    
+    	<record id="fbi_crm_template_meeting_vendor_invitation_mail" model="mail.template">
+            <field name="name">FBI CRM : Invitation Vendeur</field>
+            <field name="model_id" ref="calendar.model_calendar_attendee"/>
+            <field name="subject">Prise de RDV {{ object.event_id.name }}</field>
+            <field name="email_from">confirmation.rdv@ynit.fr</field>
+            <field name="email_to">{{ ('' if object.partner_id.email and object.partner_id.email == object.email else object.email) }}</field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="description">Envoyé au vendeur pour qu'il réserve la plage</field>
+            <field name="body_html" type="html">
+            	<div>
+            		<t t-set="colors" t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+					<t t-set="is_online" t-value="'appointment_type_id' in object.event_id and object.event_id.appointment_type_id"/>
+					<t t-set="customer" t-value="object.event_id.find_partner_customer()"/>
+					<t t-set="target_responsible" t-value="object.partner_id == object.event_id.partner_id"/>
+					<t t-set="lead" t-value="object.event_id.find_lead_event()"/>
+					<t t-set="target_customer" t-value="object.partner_id == customer"/>
+					<t t-set="recurrent" t-value="object.recurrence_id and not ctx.get('calendar_template_ignore_recurrence')"/>
+	                
+					<p>
+					   	Bonjour <t t-out="lead.user_id.name or ''">Ready Mat</t>,
+					   	<br/>
+						<br/>
+						Un nouveau RDV a été pris avec la société <t t-out="lead.partner_id.name or ''">Jesse Brown</t> par l'équipe <t t-out="lead.team_id.name or ''">DematiCall</t>.
+						<br/>
+						Nous vous enverrons la fiche RDV dès que celui-ci est validé. En attendant la plage horaire est réservée sur votre agenda.
+						<br/>
+						Ce RDV est prévu le <t t-out="object.event_id.get_display_time_tz(tz=object.partner_id.tz) or ''">05/04/2021 at (11:00:00 To 11:30:00) (Europe/Brussels)</t>
+					</p>
+	                
+	                <br/>
+	                Merci et bonne journée,
+	                <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        
+        <record id="fbi_crm_template_meeting_cancelled_mail" model="mail.template">
+            <field name="name">FBI CRM : Annulation de RDV</field>
+            <field name="model_id" ref="calendar.model_calendar_attendee"/>
+            <field name="subject">RDV annulé - {{ object.event_id.name }}</field>
+            <field name="email_from">confirmation.rdv@ynit.fr</field>
+            <field name="email_to">{{ ('' if object.partner_id.email and object.partner_id.email == object.email else object.email) }}</field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="description">Envoyé au commercial si l'évènement est annulé</field>
+            <field name="body_html" type="html">
+            	<div>
+            		<t t-set="colors" t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+					<t t-set="is_online" t-value="'appointment_type_id' in object.event_id and object.event_id.appointment_type_id"/>
+					<t t-set="customer" t-value="object.event_id.find_partner_customer()"/>
+					<t t-set="target_responsible" t-value="object.partner_id == object.event_id.partner_id"/>
+					<t t-set="lead" t-value="object.event_id.find_lead_event()"/>
+					<t t-set="target_customer" t-value="object.partner_id == customer"/>
+					<t t-set="recurrent" t-value="object.recurrence_id and not ctx.get('calendar_template_ignore_recurrence')"/>
+	                
+					<p>
+					   	Bonjour <t t-out="lead.user_id.name or ''">Ready Mat</t>,
+					   	<br/>
+						<br/>
+						Le RDV prévu le <t t-out="object.event_id.get_display_time_tz(tz=object.partner_id.tz) or ''">05/04/2021 at (11:00:00 To 11:30:00) (Europe/Brussels)</t> avec la société <t t-out="lead.partner_id.name or ''">Jesse Brown</t> est annulé.
+						<br/>
+						Nous gardons la main pour le repositionner dès que possible.
+						<br/>
+						La plage horaire du RDV va être libérée de votre agenda. Aucune action de votre part n'est nécessaire.
+					</p>
+	                
+	                <br/>
+	                Merci et bonne journée,
+	                <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        
+        <!-- Fiche RDV Confirmée pour vendeur DISTANCIEL -->
+        <record id="fbi_crm_template_meeting_confirmed_mail" model="mail.template">
+            <field name="name">FBI CRM : Confirmation de RDV au commercial</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="subject">Confirmation RDV {{ object.name }}</field>
+            <field name="email_from">confirmation.rdv@ynit.fr</field>
+            <field name="description">Confirmation de RDV</field>
+            <field name="report_template" ref="fbi_crm.report_fiche_rdv"/>
+            <field name="report_name">Fiche RDV {{ object.name }}.pdf</field>
+            <field name="body_html" type="html">
+            	<div>
+				   <t t-set="event" t-value="sorted(object.calendar_event_ids, key=lambda evt: evt.start, reverse=True)[0]"/>
+				   <t t-set="customer" t-value="object.partner_id"/>
+				   <t t-set="colors" t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+				   <p>
+				      	Bonjour <t t-out="object.user_id and object.user_id.name or ''">Vendeur</t>,
+				      	<br/>
+				      	<br/>
+				      	Un nouveau RDV a été pris le <t t-out="event.get_display_time_tz(tz=object.partner_id.tz) or ''">05/04/2021 at (11:00:00 To 11:30:00) (Europe/Brussels)</t> avec la société <t t-out="object.partner_id.name or ''">Jesse Brown</t> par l'équipe <t t-out="object.team_id and object.team_id.name or ''">DematiCall</t>.
+				      	<br/>
+						Vous trouverez en PJ, la fiche RDV.
+						<br/>
+						Nous vous laissons la main pour envoyer une invitation Teams au prospect.
+						<br/>
+						Nous vous proposons le texte suivant :		     				      				     
+				   </p>
+				   <p style="text-align: justify; font-style: italic;">
+				   		<br/>
+				   		Bonjour <t t-out="object.title and object.title.name or ''">Monsieur</t> <t t-out="object.contact_firstname or ''">Contact</t> <t t-out="object.contact_name or ''">Contact</t> <br/><br/>
+				   		Pour faire suite à votre entretien téléphonique avec <t t-out="object.commercial_annonce_id and object.commercial_annonce_id.name or ''">Commercial</t>, nous vous remercions pour votre accueil et vous confirmons notre rdv qui aura lieu en visioconférence le <t t-out="str(event.start.day) or ''">4</t> <t t-out="format_datetime(dt=event.start, tz=None, dt_format='MMMM y', lang_code=event.env.lang) or ''">May 2021</t> de <t t-out="format_time(time=event.start, tz=None, time_format='short', lang_code=event.env.lang) or ''">08:00 AM</t> à <t t-out="format_time(time=event.stop, tz=None, time_format='short', lang_code=event.env.lang) or ''">10:00 AM</t>. <br/><br/>
+						Nous pourrons ainsi vous présenter notre solution qui permet notamment la digitalisation, le classement et la validation des factures fournisseurs ainsi que la simplification de la saisie des écritures comptables. <br/><br/>
+						Dans cette attente je vous souhaite une agréable journée.<br/><br/>
+				   </p>
+				   
+				   <table cellspacing="0" cellpadding="0" border="0">
+				      <tbody>
+				         <tr>
+				            <td valign="top">
+				               <table cellspacing="0" cellpadding="0" border="0">
+				                  <tr>
+				                     <td style="border-top-start-radius: 3px; border-top-end-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B; min-width: 150px;"
+				                        width="150">
+				                        <t t-out="format_datetime(dt=event.start, tz=None, dt_format='EEEE', lang_code=event.env.lang) or ''">
+				                           Tuesday
+				                        </t>
+				                     </td>
+				                  </tr>
+				                  <tr>
+				                     <td style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
+				                        <t t-out="str(event.start.day) or ''">4</t>
+				                     </td>
+				                  </tr>
+				                  <tr>
+				                     <td style="font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;">
+				                        <t t-out="format_datetime(dt=event.start, tz=None, dt_format='MMMM y', lang_code=event.env.lang) or ''">
+				                           May 2021
+				                        </t>
+				                     </td>
+				                  </tr>
+				                  <tr>
+				                     <td style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-end-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-start-radius: 3px;">
+				                        <t t-if="not event.allday">
+				                           <div>
+				                              <t t-out="format_time(time=event.start, tz=None, time_format='short', lang_code=event.env.lang) or ''">
+				                                 11:00 AM
+				                              </t>
+				                           </div>
+				                        </t>
+				                     </td>
+				                  </tr>
+				               </table>
+				            </td>
+				            <td width="20" style="width: 20px;">
+				            </td>
+				            <td>
+				               <p>
+				                  <strong>Détails du RDV</strong>
+				                  <br/>
+				               </p>
+				               <ul>
+				                  <t t-if="object.email_template_confirm_choice == 'generic_visio' or object.email_template_confirm_choice == 'invoice_supplier_visio'">
+				                     <li>En visio</li>
+				                  </t>
+				                  <t t-else="">
+				                     <li>En distanciel</li>
+				                  </t>
+				                  <t t-if="event.location">
+				                     <li>
+				                        Lieu :
+				                        <t t-out="event.location or ''">Bruxelles</t>
+				                        (<a target="_blank"
+				                           t-attf-href="http://maps.google.com/maps?oi=map&amp;q={{event.location}}">
+				                        View Map</a>)
+				                     </li>
+				                  </t>
+				                  <t t-if="not event.allday and event.duration">
+				                     <li>
+				                        Durée :
+				                        <t t-out="('%dH%02d' % (event.duration,round(event.duration*60)%60)) or ''">
+				                           0H30
+				                        </t>
+				                     </li>
+				                  </t>
+				                  <!-- <li>
+				                     Invités
+				                     <ul>
+				                        <li t-foreach="event.attendee_ids"
+				                           t-as="attendee">
+				                           <div t-attf-style="display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};"></div>
+				                           <span style="margin-left:5px" t-out="attendee.common_name or ''">
+				                           Mitchell Admin
+				                           </span>
+				                        </li>
+				                     </ul>
+				                  </li> -->
+				               </ul>
+				            </td>
+				         </tr>
+				      </tbody>
+				   </table>
+				   <div style="text-align: center; padding: 16px 0px 16px 0px;">
+				      <a t-attf-href="/web#id={{event.id}}&amp;model=calendar.event"
+				         style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px">
+				         <t t-out="'Voir'">Voir</t>
+				      </a>
+				   </div>
+				   
+				   <p>Bon Business !<br/></p>
+				</div>            	
+            </field>
+        </record>
+        
+        <!-- Fiche RDV Confirmée pour vendeur PRESENTIEL -->
+        <record id="fbi_crm_template_meeting_confirmed_mail_presentiel" model="mail.template">
+            <field name="name">FBI CRM : Confirmation de RDV au commercial (Présentiel)</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="subject">Confirmation RDV {{ object.name }}</field>
+            <field name="email_from">confirmation.rdv@ynit.fr</field>
+            <field name="description">Confirmation de RDV</field>
+            <field name="report_template" ref="fbi_crm.report_fiche_rdv"/>
+            <field name="report_name">Fiche RDV {{ object.name }}.pdf</field>
+            <field name="body_html" type="html">
+            	<div>
+				   <t t-set="event" t-value="sorted(object.calendar_event_ids, key=lambda evt: evt.start, reverse=True)[0]"/>
+				   <t t-set="customer" t-value="object.partner_id"/>
+				   <t t-set="colors" t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+				   <p>
+				      	Bonjour <t t-out="object.user_id and object.user_id.name or ''">Vendeur</t>,
+				      	<br/>
+				      	<br/>
+				      	Un nouveau RDV a été pris le <t t-out="event.get_display_time_tz(tz=object.partner_id.tz) or ''">05/04/2021 at (11:00:00 To 11:30:00) (Europe/Brussels)</t> avec la société <t t-out="object.partner_id.name or ''">Jesse Brown</t> par l'équipe <t t-out="object.team_id and object.team_id.name or ''">DematiCall</t>.
+				      	<br/>
+						Vous trouverez en PJ, la fiche RDV.
+						<br/>
+						Nous vous laissons la main pour envoyer une invitation au prospect.
+						<br/>
+						Nous vous proposons le texte suivant :		     				      				     
+				   </p>
+				   <p style="text-align: justify; font-style: italic;">
+				   		<br/>
+				   		Bonjour <t t-out="object.title and object.title.name or ''">Monsieur</t> <t t-out="object.contact_firstname or ''">Contact</t> <t t-out="object.contact_name or ''">Contact</t><br/><br/>
+				   		Pour faire suite à votre entretien téléphonique avec <t t-out="object.commercial_annonce_id and object.commercial_annonce_id.name or ''">Commercial</t>, nous vous remercions pour votre accueil et vous confirmons notre rdv qui aura lieu dans vos locaux le <t t-out="str(event.start.day) or ''">4</t> <t t-out="format_datetime(dt=event.start, tz=None, dt_format='MMMM y', lang_code=event.env.lang) or ''">May 2021</t> de <t t-out="format_time(time=event.start, tz=None, time_format='short', lang_code=event.env.lang) or ''">08:00 AM</t> à <t t-out="format_time(time=event.stop, tz=None, time_format='short', lang_code=event.env.lang) or ''">10:00 AM</t>. <br/><br/>
+						Nous pourrons ainsi vous présenter notre solution qui permet notamment la digitalisation, le classement et la validation des factures fournisseurs ainsi que la simplification de la saisie des écritures comptables. <br/><br/>
+						Dans cette attente je vous souhaite une agréable journée.<br/><br/>
+				   </p>
+				   
+				   <table cellspacing="0" cellpadding="0" border="0">
+				      <tbody>
+				         <tr>
+				            <td valign="top">
+				               <table cellspacing="0" cellpadding="0" border="0">
+				                  <tr>
+				                     <td style="border-top-start-radius: 3px; border-top-end-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B; min-width: 150px;"
+				                        width="150">
+				                        <t t-out="format_datetime(dt=event.start, tz=None, dt_format='EEEE', lang_code=event.env.lang) or ''">
+				                           Tuesday
+				                        </t>
+				                     </td>
+				                  </tr>
+				                  <tr>
+				                     <td style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
+				                        <t t-out="str(event.start.day) or ''">4</t>
+				                     </td>
+				                  </tr>
+				                  <tr>
+				                     <td style="font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;">
+				                        <t t-out="format_datetime(dt=event.start, tz=None, dt_format='MMMM y', lang_code=event.env.lang) or ''">
+				                           May 2021
+				                        </t>
+				                     </td>
+				                  </tr>
+				                  <tr>
+				                     <td style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-end-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-start-radius: 3px;">
+				                        <t t-if="not event.allday">
+				                           <div>
+				                              <t t-out="format_time(time=event.start, tz=None, time_format='short', lang_code=event.env.lang) or ''">
+				                                 11:00 AM
+				                              </t>
+				                           </div>
+				                        </t>
+				                     </td>
+				                  </tr>
+				               </table>
+				            </td>
+				            <td width="20" style="width: 20px;">
+				            </td>
+				            <td>
+				               <p>
+				                  <strong>Détails du RDV</strong>
+				                  <br/>
+				               </p>
+				               <ul>
+				                  <t t-if="object.email_template_confirm_choice == 'generic_visio' or object.email_template_confirm_choice == 'invoice_supplier_visio'">
+				                     <li>En visio</li>
+				                  </t>
+				                  <t t-else="">
+				                     <li>En Présentiel</li>
+				                  </t>
+				                  <t t-if="event.location">
+				                     <li>
+				                        Lieu :
+				                        <t t-out="event.location or ''">Bruxelles</t>
+				                        (<a target="_blank"
+				                           t-attf-href="http://maps.google.com/maps?oi=map&amp;q={{event.location}}">
+				                        View Map</a>)
+				                     </li>
+				                  </t>
+				                  <t t-if="not event.allday and event.duration">
+				                     <li>
+				                        Durée :
+				                        <t t-out="('%dH%02d' % (event.duration,round(event.duration*60)%60)) or ''">
+				                           0H30
+				                        </t>
+				                     </li>
+				                  </t>
+				                  <!-- <li>
+				                     Invités
+				                     <ul>
+				                        <li t-foreach="event.attendee_ids"
+				                           t-as="attendee">
+				                           <div t-attf-style="display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};"></div>
+				                           <span style="margin-left:5px" t-out="attendee.common_name or ''">
+				                           Mitchell Admin
+				                           </span>
+				                        </li>
+				                     </ul>
+				                  </li> -->
+				               </ul>
+				            </td>
+				         </tr>
+				      </tbody>
+				   </table>
+				   <div style="text-align: center; padding: 16px 0px 16px 0px;">
+				      <a t-attf-href="/web#id={{event.id}}&amp;model=calendar.event"
+				         style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px">
+				         <t t-out="'Voir'">Voir</t>
+				      </a>
+				   </div>
+				   
+				   <p>Bon Business !<br/></p>
+				</div>            	
+            </field>
+        </record>
+        
+        <!-- Changement de RDV -->
+        <record id="fbi_crm_template_meeting_date_changed_mail" model="mail.template">
+		   <field name="name">FBI CRM : Changement de date de RDV</field>
+		   <field name="model_id" ref="calendar.model_calendar_attendee"/>
+		   <field name="subject">Présentation solutions de dématérialisation : Changement de date</field>
+		   <field name="email_from">confirmation.rdv@ynit.fr</field>
+		   <field name="email_to">{{ ('' if object.partner_id.email and object.partner_id.email == object.email else object.email) }}</field>
+		   <field name="lang">{{ object.partner_id.lang }}</field>
+		   <field name="description">Envoyé à tous les participants si l'évènement est mis à jour</field>
+		   <field name="body_html" type="html">
+		      <div>
+		         <t t-set="colors" t-value="{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}"/>
+		         <t t-set="is_online" t-value="'appointment_type_id' in object.event_id and object.event_id.appointment_type_id"/>
+		         <t t-set="customer" t-value="object.event_id.find_partner_customer()"/>
+		         <t t-set="target_responsible" t-value="object.partner_id == object.event_id.partner_id"/>
+		         <t t-set="target_customer" t-value="object.partner_id == customer"/>
+		         <t t-set="recurrent" t-value="object.recurrence_id and not ctx.get('calendar_template_ignore_recurrence')"/>
+		         <p>
+		            Bonjour <t t-out="object.common_name or ''">Ready Mat</t>,
+		            <br/>
+		            <br/>
+		            La présentation a été replanifiée le <t t-out="object.event_id.get_display_time_tz(tz=object.partner_id.tz) or ''">05/04/2021 at (11:00:00 To 11:30:00) (Europe/Brussels)</t>
+		         </p>
+		         <table border="0" cellpadding="0" cellspacing="0">
+		            <tr>
+		               <td width="130px;" style="min-width: 130px;">
+		                  <div style="border-top-start-radius: 3px; border-top-end-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;">
+		                     <t t-out='format_datetime(dt=object.event_id.start, tz=object.mail_tz if not object.event_id.allday else None, dt_format="EEEE", lang_code=object.env.lang) or ""'>
+		                        Tuesday
+		                     </t>
+		                  </div>
+		                  <div style="font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;">
+		                     <t t-out="str(object.event_id.start.day) or ''">4</t>
+		                  </div>
+		                  <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>
+		                     <t t-out='format_datetime(dt=object.event_id.start, tz=object.mail_tz if not object.event_id.allday else None, dt_format="MMMM y", lang_code=object.env.lang) or ""'>
+		                        May 2021
+		                     </t>
+		                  </div>
+		                  <div style="border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-end-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-start-radius: 3px;">
+		                     <t t-if="not object.event_id.allday">
+		                        <div>
+		                           <t t-out='format_time(time=object.event_id.start, tz=object.mail_tz, time_format="short", lang_code=object.env.lang) or ""'>
+		                              11:00 AM
+		                           </t>
+		                        </div>
+		                        <t t-if="object.mail_tz">
+		                           <div style="font-size: 10px; font-weight: normal">
+		                              (<t t-out="object.mail_tz or ''">Europe/Brussels</t>)
+		                           </div>
+		                        </t>
+		                     </t>
+		                  </div>
+		               </td>
+		               <td width="20px;"/>
+		               <td style="padding-top: 5px;">
+		                  <p>
+		                     <strong>Détails de l'évènement</strong>
+		                  </p>
+		                  <ul>
+		                     <t t-if="object.event_id.location">
+		                        <li>
+		                           Où :
+		                           <t t-out="object.event_id.location or ''">Bruxelles</t>
+		                           (<a target="_blank"
+		                              t-attf-href="http://maps.google.com/maps?oi=map&amp;q={{ object.event_id.location }}">
+		                           View Map</a>)
+		                        </li>
+		                     </t>
+		                     <t t-if="recurrent">
+		                        <li>
+		                           Quand :
+		                           <t t-out="object.recurrence_id.name or ''">Every 1 Weeks, for 3 events</t>
+		                        </li>
+		                     </t>
+		                     <t t-if="not object.event_id.allday and object.event_id.duration">
+		                        <li>
+		                           Durée :
+		                           <t t-out="('%dH%02d' % (object.event_id.duration,round(object.event_id.duration*60)%60)) or ''">
+		                              0H30
+		                           </t>
+		                        </li>
+		                     </t>
+		                     <li>
+		                        Participants
+		                        <ul>
+		                           <li t-foreach="object.event_id.attendee_ids" t-as="attendee">
+		                              <div t-attf-style="display: inline-block; border-radius: 50%; width: 10px; height: 10px; background: {{ colors.get(attendee.state) or 'white' }};"></div>
+		                              <span style="margin-left:5px" t-out="attendee.common_name or ''">
+		                              Mitchell Admin
+		                              </span>
+		                           </li>
+		                        </ul>
+		                     </li>
+		                  </ul>
+		               </td>
+		            </tr>
+		         </table>
+		      </div>
+		   </field>
+		   <field name="lang">{{ object.partner_id.lang }}</field>
+		   <field name="auto_delete" eval="True"/>
+		</record>
+		
+		<!-- Envoi email vers Commercial - Tranfert vers Prospect -->
+		<record id="fbi_crm_template_meeting_prospect_mail" model="mail.template">
+		   <field name="name">FBI CRM : Mail prospect</field>
+		   <field name="model_id" ref="calendar.model_calendar_attendee"/>
+		   <field name="subject">Présentation solutions de dématérialisation</field>
+		   <field name="email_from">confirmation.rdv@ynit.fr</field>
+		   <field name="description">Confirmation de RDV prospect</field>
+		   <field name="body_html" type="html">
+		      <div>
+		         <t t-set="event" t-value="object.event_id"/>
+		         <t t-set="lead" t-value="event.opportunity_id"/>
+		         <p>
+		            Bonjour <t t-out="lead.title and lead.title.name or ''"/><t t-out="lead.contact_name">Contact</t><br/>
+		         </p>
+		         <p>
+		            Pour faire suite à votre échange téléphonique avec <t t-out="lead.commercial_annonce_id.name">Daniel BENNOUNA</t>, nous vous confirmons notre RDV 
+		            <t t-if="lead.email_template_confirm_choice == 'generic_visio' or lead.email_template_confirm_choice == 'invoice_supplier_visio'"> en visio</t>
+		            <t t-else=""> dans vos locaux</t> qui aura lieu le <t t-out="object.event_id.get_display_time_tz(tz=object.partner_id.tz) or ''">05/04/2021 at (11:00:00 To 11:30:00) (Europe/Brussels)</t>.
+		         </p>
+		         <p>
+		         	<t t-if="lead.email_template_confirm_choice == 'generic' or lead.email_template_confirm_choice == 'generic_visio'">
+		            	Nous vous présenterons à cette occasion les avantages de nos solutions de traitement digitalisé des documents.
+		            </t>
+		            <t t-if="lead.email_template_confirm_choice == 'invoice_supplier' or lead.email_template_confirm_choice == 'invoice_supplier_visio'">
+		            	Nous vous présenterons à cette occasion les avantages de nos solutions qui permettent notamment la digitalisation du traitement des factures fournisseurs ainsi que la simplification de la saisie des écritures comptables.
+		            </t>
+		            <br/>
+		            <t t-if="lead.email_template_confirm_choice == 'generic_visio' or lead.email_template_confirm_choice == 'invoice_supplier_visio'">
+			            <t t-if="event.videocall_location">
+					         <li> Accéder à la visio en cliquant sur ce lien : <br/>
+					         	<a t-att-href="event.videocall_location" target="_blank" t-out="VISIO">VISIO</a>
+					         </li>
+			         	</t>
+		         	</t>
+		         	<br/>
+		         	<br/>
+		         	Je vous remercie d'accepter cette invitation pour coordonner nos agendas respectifs :
+		         	<br/>
+		         	<div style="text-align: center; padding: 16px 0px 16px 0px;">
+		            	<a t-attf-href="/calendar/meeting/accept?token={{object.access_token}}&amp;id={{event.id}}" style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px">Accepter</a>&amp;nbsp;
+		            	<a t-attf-href="/calendar/meeting/decline?token={{object.access_token}}&amp;id={{event.id}}" style="margin-left: 15px;padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px">Refuser</a>
+		         	</div>
+		         </p>
+		         <p>
+		            Dans cette attente nous vous souhaitons une agréable journée.
+		            <br/>
+		            Pour <t t-out="lead.commercial_annonce_id.name">Daniel BENNOUNA</t> <t t-if="lead.telemarketer_id.phone"> - <t t-out="lead.telemarketer_id.phone"/></t>
+		         </p>
+		      </div>
+		   </field>
+		   <field name="auto_delete" eval="True"/>
+		</record>
+    
+    </data>
+    
+</odoo>
