@@ -1,15 +1,15 @@
 {
     "version": "0.2.0",
     "configurations": [{
-        "name": "Odoo 17 Ynit",
+        "name": "Odoo 16 Ynit",
         "type": "debugpy",
         "request": "launch",
         "stopOnEntry": false,
         "python": "/usr/bin/python3",
         "console": "integratedTerminal",
-        "program": "/home/aranorn/apps/odoo-16.0/odoo-bin",
+        "program": "/home/aranorn/dev/ynit/setups/odoo16/odoo-bin",
         "args": [
-            "--config=/etc/odoo_ynit.conf",
+            "--config=/home/aranorn/dev/ynit/setups/odoo16/odoo.conf",
             "-u",
             "confidentiality_agreement"
  

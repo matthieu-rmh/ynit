@@ -3,34 +3,320 @@
         <template id="ynit_confidentiality_agreement_report_view">
             <t t-call="web.html_container" >
                 <t t-foreach="docs" t-as="doc">
-                    <t t-set="company" t-value="doc.current_company"/>
-                    <t t-call="confidentiality_agreement.confidentiality_agreement_layout">
+                        <t t-set="company" t-value="user.company_id"/>
+                        <div class="article o_report_layout_standard" t-att-data-oe-model="doc and doc._name" t-att-data-oe-id="doc and doc.id">
+                            <t t-call="confidentiality_agreement.confidentiality_agreement_layout"/>
+                    
+                                <div class="page confidentiality___agreement__content" style="margin-top: 10px;">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <p>
+                                        ENTRE : 
+                                    </p>
+                                    <p>
+                                        La société <t t-esc="doc.legal_entity_name"/> :
+                                    </p>
+                                    <ul class="company__infos">
+                                        <li><t t-esc="doc.entity_type"/> au capital de <t t-esc="doc.capital"/> Euros,</li>
+                                        <li>Immatriculée au Registre du Commerce et des Sociétés de <t t-esc="doc.registration"/>,</li>
+                                        <li>Sous le numéro <t t-esc="doc.entity_number"/>,</li>
+                                        <li>Dont le siège social est situé au <t t-esc="doc.head_office"/>, </li>
+                                    </ul>
+                                    
+                                    <div class="representative__infos">
+                                        <p>
+                                            Représentée par <t t-esc="doc.representative_title"/> <t t-esc="doc.representative"/>, <t t-esc="doc.representative_function"/>,
+                                        </p>
+                                        <p>
+                                            dûment habilité(e) aux signatures des présentes,
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="after__mention">
+                                        <p style="text-align: right;">
+                                            Ci-après dénommée le «<b> CLIENT </b>»,
+                                        </p>
+                                        <p style="text-align: right;">
+                                            D’une part
+                                        </p>
+                                    </div>
+                                    
+                                    
+                                    <p style="margin-top: 10px;">
+                                        ET :
+                                    </p>
+                                    <p>
+                                        La société <t t-esc="doc.current_partner.legal_entity_name"/> :
+                                    </p>
+                                    <ul class="company__infos">
+                                        <li> <t t-esc="doc.current_partner.entity_type"/> au capital de  <t t-esc="doc.current_partner.capital"/> Euros,</li>
+                                        <li>Immatriculée au Registre du Commerce et des Sociétés de  <t t-esc="doc.current_partner.registration"/>,</li>
+                                        <li>Sous le numéro  <t t-esc="doc.current_partner.entity_number"/>,</li>
+                                        <li>Dont le siège social est situé au  <t t-esc="doc.current_partner.head_office"/>, FRANCE,</li>
+                                    </ul>
+
+                                    <div class="representative__infos">
+                                        <p>
+                                            Représentée par  <t t-esc="doc.current_partner.representative"/>,  <t t-esc="doc.current_partner.representative_function"/>,
+                                        </p>
+                                        <p>
+                                            dûment habilité(e) aux signatures des présentes,
+                                        </p>
+                                    </div>
+
+                                    <div class="after__mention">
+                                        <p style="text-align: right;">
+                                            Ci-après dénommée «<b> YNOV’IT SERVICES </b>» ou le «<b> PARTENAIRE </b>»,
+                                        </p>
+                                        <p style="text-align: right;">
+                                            D'autre part,
+                                        </p>
+                                    </div>
+                                    
+                                    
+                                    <p style="margin-top: 60px;">
+                                        Ci-après dénommées individuellement ou collectivement la ou les «<b> Partie(s) </b>».
+                                    </p>
+                                    
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    
+                                    <div class="page__2">
+                                        <p style="text-decoration: underline; margin-bottom: 50px;">
+                                            IL A ÉTÉ PRÉALABLEMENT RAPPELÉ CE QUI SUIT :
+                                        </p>
+                                        <p>
+                                            La société YNOV’IT SERVICES intervient à la demande du CLIENT pour réaliser des prestations de
+    conseils et de services informatiques, ci-après dénommée la « <b style="margin: 5px;">Mission</b> ».
+                                        </p>
+                                        
+                                        
+                                        <p>
+                                            Dans ce cadre, les Parties sont amenées à se voir transmettre, par écrit et/ou par oral, des informations
+    confidentielles, de toute nature, à caractère notamment juridique, commercial, financier, informatique
+    et technique, ci-après les « <b style="margin: 5px;">Informations</b> ».
+                                        </p>
+                                        <p>
+                                            En conséquence, les Parties reconnaissent que la communication de ces Informations leur impose une
+    obligation de confidentialité dans les termes et les conditions ci-après, ce qu'elles acceptent
+    expressément
+                                        </p>
+                                        
+                                    <p style="text-decoration: underline;">
+                                        EN CET ÉTAT LES PARTIES ONT ARRÊTÉ ET SONT CONVENUES DE CE QUI SUIT :
+                                        </p>
+                                        
+                                        <b>
+                                            Article 1 - OBJET DE LA MISSION
+                                        </b>
+                                        
+                                        <p>
+                                            Les Parties reconnaissent par la présente que les Informations qui pourraient être mises à leur
+    disposition sous quelque forme que ce soit, par écrit et/ou par oral, ou dont elles auraient pu avoir
+    connaissance, sont strictement confidentielles et ne peuvent être divulguées à une partie tierce.
+                                        </p>
+                                        
+                                        <p>
+                                            Les Parties s'engagent en conséquence, aux termes du présent accord, à conserver secrètes et
+    confidentielles toutes ces Informations.
+                                        </p>
+                                        
+                                        <b>
+                                            Article 2 - ENGAGEMENTS DE CONFIDENTIALITÉ
+                                        </b>
+                                        
+                                        <p>
+                                            <b class="underpoint" style="margin: 0px;">2.1 - </b> Les Parties s'engagent : 
+                                        </p>
+                                        
+                                        <ul>
+                                            <li>à n'utiliser les Informations qu'aux seules fins d'échanger dans le cadre du projet de la Mission
+    confiée.</li>
+                                            <li>à limiter par tous les moyens appropriés, la diffusion totale ou partielle et l'utilisation des
+    Informations à ses seuls employés, intervenant directement pour la réalisation de la Mission.</li>
+                                            <li>à conserver confidentiels l'existence et le contenu même des recommandations et
+    préconisations faites par l'une ou l'ensemble des Parties et à conserver secrètes et dans un lieu
+    sécurisé toutes les Informations qu'elles auraient pu recevoir ou dont elles auraient pu avoir
+    connaissance, dans le cadre de la réalisation de la Mission.</li>
+
+<br/>
+<br/>
+<br/>
+    <li>à ne pas reproduire, ni copier, ni dupliquer, totalement ou partiellement, sans l'autorisation
+expresse et préalable de la Partie émettrice , les Informations au-delà de ce qui est nécessaire
+à la réalisation de la Mission.</li>
+
+                                        </ul>
+
+                                    <p>Les Parties prendront toutes dispositions, y compris contractuelles, pour que les Récipiendaires
+gardent secrètes et confidentielles les Informations qui leur seront communiquées.</p>
+
+                                    <p>Les Parties seront tenues pour responsables de toute violation du présent accord par l'un des
+Récipiendaires et s'engagent par la présente à s'indemniser pour tout dommage ou autre perte, de
+quelque nature que ce soit, en résultant directement.</p>
+
+                                    <p>Les obligations précédentes ne s'appliqueront pas aux Informations :</p>
+                                    <ul>
+                                        <li>déjà dans le domaine public à leur date de communication ou qui viennent à y entrer, sans
+aucun manquement des Parties à l'une de ses obligations aux termes du présent accord ;</li>
+                                        <li>qui ont été communiquées par un tiers de manière licite et ne sont pas couvertes par une
+obligation de confidentialité ;</li>
+                                        <li>dont la Partie avait déjà connaissance antérieurement à leur divulgation ;</li>
+                                        <li>dont il peut être justifié qu'elles ont été conçues et formalisées de manière indépendante sans
+référence aux Informations confidentielles ;</li>
+                                        <li>que la loi ou la réglementation applicable obligerait à divulguer.</li>
+                                    </ul>
+
+                <p><b class="underpoint" style="margin: 0px;">2.2 - </b> Les Parties s'engagent, dans le cadre des présentes, à ne prendre aucun contact direct ou indirect
+concernant la Mission avec quelque tiers que ce soit, sans y avoir été préalablement autorisé par écrit
+par l'autre Partie.
+                                        </p>
+
+
+                                    <p>Dans le cas où l'une des Parties serait autorisée par la Partie émettrice de l'Information par écrit à
+prendre contact avec un tiers, la Partie autorisée prendra toutes dispositions, y compris contractuelles,
+pour que ledit tiers respecte l'ensemble des dispositions des présentes et demeurera directement
+responsable vis à vis de la Partie émettrice de toute violation par ledit tiers de l'une quelconque des
+dispositions des présentes.</p>
+
+ <p><b style="margin: 0px;" class="underpoint">2.3 - </b> Au terme des discussions, les Parties sont tenues le cas échéant, de restituer à première demande
+de la Partie émettrice de l'Information, tous les exemplaires, sur tous supports, des Informations.
+                                        </p>
+<br/>
+                                         <p><b class="underpoint" style="margin: 0px;">2.4 - </b> Les Parties reconnaissent également que les Informations qu'elles recevront leur sont transmises
+exclusivement pour leur permettre la réalisation de la Mission.
+                                        </p>
+
+                                    <b>
+                                            Article 3 - SANCTION DE LA VIOLATION DE L'ENGAGEMENT DE CONFIDENTIALITÉ
+                                        </b>
+
+                                        <p>Chacune des Parties reconnaît que l'autre Partie et toutes les sociétés de son groupe subiraient un
+préjudice certain et important si elle ne respectait pas les obligations de secret et de confidentialité
+contenues dans le présent accord.</p>
+                                        <p>Elles pourront notamment solliciter du Juge des Référés toute astreinte pour obtenir la cessation de
+l'atteinte de la confidentialité, sans préjudice de tout autre recours et/ou action et de tous dommages
+et intérêts qui pourraient être prononcés par le Juge du fond.</p>
+
+<b> Article 4 - PROPRIÉTÉ
+                                        </b>
+
+                                        <p><b class="underpoint" style="margin: 0px;">4.1 - </b> Toutes les Informations resteront la propriété de la Partie qui les a émises.
+                                        </p>
+
+                                        <p><b class="underpoint" style="margin: 0px;">4.2 - </b> La divulgation d'Informations Confidentielles au titre du présent accord ne peut en aucun cas être
+interprétée comme conférant de manière expresse ou implicite un droit quelconque sur lesdites
+Informations.
+                                        </p>
+
+                                        <p><b class="underpoint" style="margin: 0px;">4.3 - </b> Tous les éléments relatifs à la Mission (recommandations, préconisations ... ) demeurent la
+propriété exclusive de la Partie émettrice de l'Information et ne sauraient être utilisés à d'autres fins
+que dans le cadre et pour les besoins des présentes.</p>
+
+                                    <b>Article 5 - DURÉE</b>
+
+                                    <p>Les parties s'engagent à respecter les engagements pris dans le présent accord à compter de sa
+signature. Ces engagements de confidentialité resteront en vigueur pendant une durée minimale de
+deux (2) ans et, en cas de contrat entre les Parties, se poursuivront pour une période de deux (2) ans
+suivant la date de sa résiliation ou de son expiration.</p>
+
+                                    <p>Pendant cette période, les Parties continueront de conserver confidentiels l'existence et le contenu
+même de la Mission et conserveront secrètes toutes les Informations qu'elles auraient pu recevoir ou
+dont elles auraient pu avoir connaissance.</p>
+
+                                    <b>Article 6 - INTUITU PERSONAE</b>
+
+                                    <p>Le présent accord étant conclu intuitu personae, les Parties s'engagent à ne pas le céder ou le
+transférer, sous quelque forme que ce soit à un tiers quel qu'il soit.</p>
+
+                                    <b>Article 7 - ATTRIBUTION DE JURIDICTION - DROIT APPLICABLE</b>
+
+                                    <p>Le présent accord est régi par le droit français et soumis à la compétence exclusive du Tribunal de
+Commerce de Lyon.</p>
+
+<br/>
+<br/>
+<p>Fait à Saint-Etienne, le 17 septembre 2024.</p>
+<br/>
+<br/>
+
+                                    </div>
+                                    <table style="width: 100%; height:400px;">
+                                        <tr>
+                                            <td style="border: 1px solid black;padding: 5px;">
+                                                <b>Pour le CLIENT,</b>
+                                                <p style="margin: 0px;"><t t-esc="doc.representative"/></p>
+                                                <p style="margin: 0px;"><t t-esc="doc.representative_function"/></p>
+                                                <br/>
+                                                <p>« Lu et approuvé » le ______________________.</p>
+
+                                            </td>
+                                            <td style="border: 1px solid black;padding: 5px;">
+                                                <b>Pour YNOV’IT SERVICES,</b>
+                                                <p style="margin: 0px;"><t t-esc="doc.current_partner.representative"/></p>
+                                                <p style="margin: 0px;"><t t-esc="doc.current_partner.representative_function"/></p>
+                                                <br/>
+                                                <p>« Lu et approuvé » le ______________________.</p>
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    
+                                </div>
                         
-                            <!-- <div style="display: block;background-color: lightpink; height: 1000px; width: 1000px;">
-        
-                                <p>oi <span t-esc="doc.name"/></p>
-                            </div> -->
-                        
-                    </t>
+                        </div> 
                 </t>
             </t>
         </template>
 
         <template id="confidentiality_agreement_layout">
-            <t t-call="web.html_container">
                 <div class="header">
-                    <div class="row">
-                        <center>Header</center>
+                    <div class="first-page" style="height: 175px;">
+                        <div class="row">
+                            <center><img class="image" src="/confidentiality_agreement/static/src/img/ynit.png" width="150" height="150" style="width:150px;height:auto;"/></center>
+                        </div>
+                        <div class="row">
+                            <div style="
+                            height: 70px;
+                            border: 2px solid black;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            ">
+                                <center style="margin: auto;padding: 15px;"><b style="font-family: 'AvenirNextCyr-Bold'; font-size: 35px;">ACCORD DE CONFIDENTIALITÉ</b></center>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="not-first-page" style="position: relative; margin-top: -160px;">
+                        <div style="padding-bottom: 20px, border: 2px solid black;  height:40px;">
+                            <center style="border-bottom: 1px solid gray; padding-bottom: 50px"><b style="text-align: center;font-family: 'AvenirNextCyr-Bold'; font-size: 22px;">YNOV'IT SERVICES - ACCORD DE CONFIDENTIALITÉ</b></center>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="footer" style="margin-bottom: 3000px;">
+                <div class="footer">
+                    <hr class="solid"/>
                     <div class="row">
-                        <center><span>Page </span><span class="page" /> of <span class="topage" /></center>
+                        <div class="col footer__left"  style=" width: 50%;">
+                            <p>Copyright © Ynov’iT Services, all rights reserved </p>
+                            <p>Version 1.0 du 15/01/2024</p>
+                        </div>
+                        <div class="col footer__right" style=" width: 50%;">
+                            <!-- <p>page / total</p> -->
+                            <p><span class="page"/> / <span class="topage"/></p>
+                        </div>
                     </div>
                 </div>
-            </t>
-          </template>
+        </template>
 
 
     </data>

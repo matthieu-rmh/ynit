@@ -1,0 +1,33 @@
+@font-face{
+    font-family: 'AvenirNextCyr-Thin';
+    src: url(/confidentiality_agreement/static/src/fonts/AvenirNext/AvenirNextCyr-Thin.ttf) format('truetype')
+}
+
+@font-face{
+    font-family: 'AvenirNextCyr-Heavy';
+    src: url(/confidentiality_agreement/static/src/fonts/AvenirNext/AvenirNextCyr-Heavy.ttf) format('truetype')
+}
+
+@font-face{
+    font-family: 'AvenirNextCyr-Bold';
+    src: url(/confidentiality_agreement/static/src/fonts/AvenirNext/AvenirNextCyr-Bold.ttf) format('truetype')
+}
+
+@font-face{
+    font-family: 'AvenirNextCyr-Light';
+    src: url(/confidentiality_agreement/static/src/fonts/AvenirNext/AvenirNextCyr-Light.ttf) format('truetype')
+}
+
+@font-face{
+    font-family: 'AvenirNextCyr-Demi';
+    src: url(/confidentiality_agreement/static/src/fonts/AvenirNext/AvenirNextCyr-Demi.ttf) format('truetype')
+}
+
+
+
+.confidentiality___agreement__content *, .footer *  {
+    font-family: 'AvenirNextCyr-Light';
+}
+
+
+

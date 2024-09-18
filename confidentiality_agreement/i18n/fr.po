@@ -1,0 +1,525 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* confidentiality_agreement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-18 01:12+0000\n"
+"PO-Revision-Date: 2024-09-18 01:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: confidentiality_agreement
+#: model:ir.actions.report,print_report_name:confidentiality_agreement.ynit_confidentiality_agreement_report
+msgid "'Confidentiality agreement report - %s' % (object.name)"
+msgstr ""
+"'YnoviT Services - Accord de confidentialité Client - %s' % (object.name)"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ", FRANCE,"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b class=\"underpoint\" style=\"margin: 0px;\">2.1 - </b> Les Parties "
+"s'engagent :"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b class=\"underpoint\" style=\"margin: 0px;\">2.2 - </b> Les Parties s'engagent, dans le cadre des présentes, à ne prendre aucun contact direct ou indirect\n"
+"concernant la Mission avec quelque tiers que ce soit, sans y avoir été préalablement autorisé par écrit\n"
+"par l'autre Partie."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b class=\"underpoint\" style=\"margin: 0px;\">2.4 - </b> Les Parties reconnaissent également que les Informations qu'elles recevront leur sont transmises\n"
+"exclusivement pour leur permettre la réalisation de la Mission."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b class=\"underpoint\" style=\"margin: 0px;\">4.1 - </b> Toutes les "
+"Informations resteront la propriété de la Partie qui les a émises."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b class=\"underpoint\" style=\"margin: 0px;\">4.2 - </b> La divulgation d'Informations Confidentielles au titre du présent accord ne peut en aucun cas être\n"
+"interprétée comme conférant de manière expresse ou implicite un droit quelconque sur lesdites\n"
+"Informations."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b class=\"underpoint\" style=\"margin: 0px;\">4.3 - </b> Tous les éléments relatifs à la Mission (recommandations, préconisations ... ) demeurent la\n"
+"propriété exclusive de la Partie émettrice de l'Information et ne sauraient être utilisés à d'autres fins\n"
+"que dans le cadre et pour les besoins des présentes."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.confidentiality_agreement_layout
+msgid ""
+"<b style=\"font-family: 'AvenirNextCyr-Bold'; font-size: 35px;\">ACCORD DE "
+"CONFIDENTIALITÉ</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b style=\"margin: 0px;\" class=\"underpoint\">2.3 - </b> Au terme des discussions, les Parties sont tenues le cas échéant, de restituer à première demande\n"
+"de la Partie émettrice de l'Information, tous les exemplaires, sur tous supports, des Informations."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.confidentiality_agreement_layout
+msgid ""
+"<b style=\"text-align: center;font-family: 'AvenirNextCyr-Bold'; font-size: "
+"22px;\">YNOV'IT SERVICES - ACCORD DE CONFIDENTIALITÉ</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b>\n"
+"                                            Article 1 - OBJET DE LA MISSION\n"
+"                                        </b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b>\n"
+"                                            Article 2 - ENGAGEMENTS DE CONFIDENTIALITÉ\n"
+"                                        </b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b>\n"
+"                                            Article 3 - SANCTION DE LA VIOLATION DE L'ENGAGEMENT DE CONFIDENTIALITÉ\n"
+"                                        </b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"<b> Article 4 - PROPRIÉTÉ\n"
+"                                        </b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "<b>Article 5 - DURÉE</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "<b>Article 6 - INTUITU PERSONAE</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "<b>Article 7 - ATTRIBUTION DE JURIDICTION - DROIT APPLICABLE</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "<b>Pour YNOV’IT SERVICES,</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "<b>Pour le CLIENT,</b>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.confidentiality_agreement_layout
+msgid "<span class=\"page\"/> / <span class=\"topage\"/>"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__capital
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__capital
+msgid "Capital"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Chacune des Parties reconnaît que l'autre Partie et toutes les sociétés de son groupe subiraient un\n"
+"préjudice certain et important si elle ne respectait pas les obligations de secret et de confidentialité\n"
+"contenues dans le présent accord."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Ci-après dénommée le «<b> CLIENT </b>»,"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Ci-après dénommée «<b> YNOV’IT SERVICES </b>» ou le «<b> PARTENAIRE </b>»,"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Ci-après dénommées individuellement ou collectivement la ou les «<b> "
+"Partie(s) </b>»."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model:ir.actions.report,name:confidentiality_agreement.ynit_confidentiality_agreement_report
+msgid "Confidentiality agreement"
+msgstr "Accord de confidentialité"
+
+#. module: confidentiality_agreement
+#: model:ir.model,name:confidentiality_agreement.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.confidentiality_agreement_layout
+msgid "Copyright © Ynov’iT Services, all rights reserved"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__current_partner
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__current_partner
+msgid "Current Partner"
+msgstr "Partenaire"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "D'autre part,"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Dans ce cadre, les Parties sont amenées à se voir transmettre, par écrit et/ou par oral, des informations\n"
+"    confidentielles, de toute nature, à caractère notamment juridique, commercial, financier, informatique\n"
+"    et technique, ci-après les « <b style=\"margin: 5px;\">Informations</b> »."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Dans le cas où l'une des Parties serait autorisée par la Partie émettrice de l'Information par écrit à\n"
+"prendre contact avec un tiers, la Partie autorisée prendra toutes dispositions, y compris contractuelles,\n"
+"pour que ledit tiers respecte l'ensemble des dispositions des présentes et demeurera directement\n"
+"responsable vis à vis de la Partie émettrice de toute violation par ledit tiers de l'une quelconque des\n"
+"dispositions des présentes."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Dont le siège social est situé au"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "D’une part"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "EN CET ÉTAT LES PARTIES ONT ARRÊTÉ ET SONT CONVENUES DE CE QUI SUIT :"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "ENTRE :"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "ET :"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Elles pourront notamment solliciter du Juge des Référés toute astreinte pour obtenir la cessation de\n"
+"l'atteinte de la confidentialité, sans préjudice de tout autre recours et/ou action et de tous dommages\n"
+"et intérêts qui pourraient être prononcés par le Juge du fond."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"En conséquence, les Parties reconnaissent que la communication de ces Informations leur impose une\n"
+"    obligation de confidentialité dans les termes et les conditions ci-après, ce qu'elles acceptent\n"
+"    expressément"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.res_partner_legal_informations
+msgid "Entity"
+msgstr "Entité"
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__entity_number
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__entity_number
+msgid "Entity number"
+msgstr "Numéro de l'entité"
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__entity_type
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__entity_type
+msgid "Entity type"
+msgstr "Type d'entité"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Euros,"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Fait à Saint-Etienne, le 17 septembre 2024."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__head_office
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__head_office
+msgid "Head office"
+msgstr "Siège social"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "IL A ÉTÉ PRÉALABLEMENT RAPPELÉ CE QUI SUIT :"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Immatriculée au Registre du Commerce et des Sociétés de"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "La société"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"La société YNOV’IT SERVICES intervient à la demande du CLIENT pour réaliser des prestations de\n"
+"    conseils et de services informatiques, ci-après dénommée la « <b style=\"margin: 5px;\">Mission</b> »."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Le présent accord est régi par le droit français et soumis à la compétence exclusive du Tribunal de\n"
+"Commerce de Lyon."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Le présent accord étant conclu intuitu personae, les Parties s'engagent à ne pas le céder ou le\n"
+"transférer, sous quelque forme que ce soit à un tiers quel qu'il soit."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__legal_entity_name
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__legal_entity_name
+msgid "Legal entity name"
+msgstr "Nom de l'entité"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.res_partner_legal_informations
+msgid "Legal informations"
+msgstr "Informations juridiques"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Les Parties prendront toutes dispositions, y compris contractuelles, pour que les Récipiendaires\n"
+"gardent secrètes et confidentielles les Informations qui leur seront communiquées."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Les Parties reconnaissent par la présente que les Informations qui pourraient être mises à leur\n"
+"    disposition sous quelque forme que ce soit, par écrit et/ou par oral, ou dont elles auraient pu avoir\n"
+"    connaissance, sont strictement confidentielles et ne peuvent être divulguées à une partie tierce."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Les Parties s'engagent en conséquence, aux termes du présent accord, à conserver secrètes et\n"
+"    confidentielles toutes ces Informations."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Les Parties seront tenues pour responsables de toute violation du présent accord par l'un des\n"
+"Récipiendaires et s'engagent par la présente à s'indemniser pour tout dommage ou autre perte, de\n"
+"quelque nature que ce soit, en résultant directement."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Les obligations précédentes ne s'appliqueront pas aux Informations :"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Les parties s'engagent à respecter les engagements pris dans le présent accord à compter de sa\n"
+"signature. Ces engagements de confidentialité resteront en vigueur pendant une durée minimale de\n"
+"deux (2) ans et, en cas de contrat entre les Parties, se poursuivront pour une période de deux (2) ans\n"
+"suivant la date de sa résiliation ou de son expiration."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"Pendant cette période, les Parties continueront de conserver confidentiels l'existence et le contenu\n"
+"même de la Mission et conserveront secrètes toutes les Informations qu'elles auraient pu recevoir ou\n"
+"dont elles auraient pu avoir connaissance."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__registration
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__registration
+msgid "Registration"
+msgstr "Registre d'immatriculation"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.res_partner_legal_informations
+msgid "Representative"
+msgstr "Représentant"
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__representative_function
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__representative_function
+msgid "Representative function"
+msgstr "Fonction du représentant"
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__representative
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__representative
+msgid "Representative name"
+msgstr "Nom du représentant"
+
+#. module: confidentiality_agreement
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_partner__representative_title
+#: model:ir.model.fields,field_description:confidentiality_agreement.field_res_users__representative_title
+msgid "Representative title"
+msgstr "Titre"
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Représentée par"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "Sous le numéro"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.confidentiality_agreement_layout
+msgid "Version 1.0 du 15/01/2024"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "au capital de"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"dont il peut être justifié qu'elles ont été conçues et formalisées de manière indépendante sans\n"
+"référence aux Informations confidentielles ;"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"dont la Partie avait déjà connaissance antérieurement à leur divulgation ;"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"déjà dans le domaine public à leur date de communication ou qui viennent à y entrer, sans\n"
+"aucun manquement des Parties à l'une de ses obligations aux termes du présent accord ;"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "dûment habilité(e) aux signatures des présentes,"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "que la loi ou la réglementation applicable obligerait à divulguer."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"qui ont été communiquées par un tiers de manière licite et ne sont pas couvertes par une\n"
+"obligation de confidentialité ;"
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid "« Lu et approuvé » le ______________________."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"à conserver confidentiels l'existence et le contenu même des recommandations et\n"
+"    préconisations faites par l'une ou l'ensemble des Parties et à conserver secrètes et dans un lieu\n"
+"    sécurisé toutes les Informations qu'elles auraient pu recevoir ou dont elles auraient pu avoir\n"
+"    connaissance, dans le cadre de la réalisation de la Mission."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"à limiter par tous les moyens appropriés, la diffusion totale ou partielle et l'utilisation des\n"
+"    Informations à ses seuls employés, intervenant directement pour la réalisation de la Mission."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"à n'utiliser les Informations qu'aux seules fins d'échanger dans le cadre du projet de la Mission\n"
+"    confiée."
+msgstr ""
+
+#. module: confidentiality_agreement
+#: model_terms:ir.ui.view,arch_db:confidentiality_agreement.ynit_confidentiality_agreement_report_view
+msgid ""
+"à ne pas reproduire, ni copier, ni dupliquer, totalement ou partiellement, sans l'autorisation\n"
+"expresse et préalable de la Partie émettrice , les Informations au-delà de ce qui est nécessaire\n"
+"à la réalisation de la Mission."
+msgstr ""

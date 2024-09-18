@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+        <!-- Ajout du code de relance sur les opportunités du CRM -->
+        <record model="ir.ui.view" id="res_partner_legal_informations">
+            <field name="name">confidentiality_agreement.res.partner.legal.informations</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook[1]" position="inside">
+                    <page string="Legal informations" name="legal_informations" attrs="{'invisible': [('is_company', '=', False)]}">
+                        <group>
+                            <group name="entity" string="Entity">
+                                <field name="legal_entity_name"></field>
+                                <field name="entity_type"></field>
+                                <field name="capital"></field>
+                                <field name="registration"></field>
+                                <field name="entity_number"></field>
+                                <field name="head_office"></field>
+                            </group>
+                            <group name="representative" string="Representative">
+                                <field name="representative_title"></field>
+                                <field name="representative"></field>
+                                <field name="representative_function"></field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

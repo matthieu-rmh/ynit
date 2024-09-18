@@ -1,5 +1,19 @@
 <odoo>
     <data>
+      <record id="confidentiality_agreement_paperformat" model="report.paperformat">
+         <field name="name">Confidentiality agreement reports paperformat</field>
+         <field name="format">A4</field>
+         <field name="orientation">Portrait</field>
+         <field name="margin_top">30</field>
+         <field name="margin_bottom">40</field>
+         <field name="margin_left">10</field>
+         <field name="margin_right">10</field>
+         <field name="header_line" eval="False"/>
+         <field name="header_spacing">25</field>
+         <field name="dpi">90</field>
+         <field name="disable_shrinking" eval="False"/>
+      </record>
+
        <record id="ynit_confidentiality_agreement_report" model="ir.actions.report">
           <field name="name">Confidentiality agreement</field>
           <field name="model">res.partner</field>
@@ -9,6 +23,9 @@
           <field name="report_file">confidentiality_agreement.ynit_confidentiality_agreement_report_view</field>
           <field name="binding_model_id" ref="base.model_res_partner"/>
           <field name="binding_type">report</field>
+           <field name="paperformat_id"
+               ref="confidentiality_agreement.confidentiality_agreement_paperformat"/>
        </record>
+
     </data>
  </odoo>

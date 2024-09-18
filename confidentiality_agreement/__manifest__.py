@@ -14,12 +14,13 @@
     'data': [
         'report/reports.xml',
         'report/ynit_confidentiality_agreement_report.xml',
+        'views/views.xml',
     ],
     'assets': {
-        # 'web.assets_backend': [
-        #     'fbi_crm/static/src/views/**/*',
-        #     'fbi_crm/static/src/css/custom.css',
-        # ],
+        'web.report_assets_common': [
+            'confidentiality_agreement/static/src/css/fonts.css',
+            'confidentiality_agreement/static/src/css/custom.css',
+        ],
         
     },
     'application': True,

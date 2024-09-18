@@ -1,0 +1,32 @@
+.company__infos > li{
+    margin: 10px;
+}
+
+.representative__infos{
+    margin-top: 5px;
+}
+
+.representative__infos > p, .after__mention > p, .footer__left > p, .footer__right > p{
+    margin: 3px;
+}
+
+.footer__left > p{
+    text-align: left;
+}
+
+.footer__right > p, .footer__right > li{
+    text-align: right;
+}
+
+.after__mention{
+    margin-top: 40px;
+}
+
+.page__2 * {
+    margin: 30px;
+}
+
+.underpoint{
+    margin-right: 6px;
+}
+

@@ -9,3 +9,6 @@
 /.vs/slnx.sqlite
 /.vs/modules/v17/TestStore/0/testlog.manifest
 /.vs/VSWorkspaceState.json
+.vscode/launch.json
+.vscode/*
+*:Zone.Identifier
